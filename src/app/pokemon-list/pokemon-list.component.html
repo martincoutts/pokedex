@@ -1,6 +1,6 @@
 <div>
   <ul>
-    <li *ngFor="let pokemon; in: pokemonList">
+    <li *ngFor="let pokemon of pokemonList">
       {{ pokemon.pokemon_species.name }}
     </li>
   </ul>

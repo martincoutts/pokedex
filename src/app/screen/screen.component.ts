@@ -16,7 +16,7 @@ export class ScreenComponent implements OnInit {
       this.service.allPokemon = response.pokemon_entries;
     });
 
-    this.service.getItem(1).subscribe((response) => {
+    this.service.getItem(32).subscribe((response) => {
       this.service.pokemon = response;
       this.service.selectPokemon(response);
       this.imageUrl = this.service.pokemonImageUrl;
