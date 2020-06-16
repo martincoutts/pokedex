@@ -1,0 +1,9 @@
+<div *ngIf="sortedCellData.length" class="evolution-chain">
+    <div *ngFor="let cell of sortedCellData">
+        <img [src]="cell.avatar" [alt]="cell.name + ' avatar'" />
+        <span>{{ cell.name }}</span>
+        <div>
+            <span *ngFor="let type of cell.types">{{ type.type.name }}</span>
+        </div>
+    </div>
+</div>
