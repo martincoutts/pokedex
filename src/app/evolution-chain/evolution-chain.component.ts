@@ -46,14 +46,15 @@ export class EvolutionChainComponent implements OnInit {
                         `https://pokeapi.co/api/v2/pokemon/${object.species.name}/`
                     )
                     .subscribe((response) => {
-                        const { name, sprites, types, order } = response;
-
                         const cellData = {
-                            name: this.utilities.capitalizeFirstLetter(name),
-                            avatar: sprites.front_default,
-                            types,
-                            order,
+                            name: this.utilities.capitalizeFirstLetter(
+                                response['name']
+                            ),
+                            avatar: response['sprites'].front_default,
+                            types: response['types'],
+                            order: response['order'],
                         };
+                        console.log('cell data', cellData);
 
                         this.cellData.push(cellData);
                         // * Makes sure evolution chain renders in correct order
