@@ -7,7 +7,9 @@ export class DataService {
         return this.http.get(`${this.url}pokedex/2/`);
     }
 
-    getItem(id: number) {
-        return this.http.get(`${this.url}pokemon/${id}/`);
+    getItem(id: number, param: string, url?: string) {
+        return url
+            ? this.http.get(url)
+            : this.http.get(`${this.url}${param}/${id}/`);
     }
 }

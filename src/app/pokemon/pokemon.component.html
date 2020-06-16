@@ -7,13 +7,16 @@
             [alt]="name + ' avatar'"
         />
     </div>
-    <!-- <p>{{ pokemon.flavor_text_entries[52].flavor_text }}</p> -->
+    <p>{{ pokemonSpecies.flavor_text_entries[52].flavor_text }}</p>
     <div class="pokemon__stats">
         <div *ngFor="let stat of pokemon.stats">
             <span>{{ stat.stat.name }}:</span><span>{{ stat.base_stat }}</span>
         </div>
         <div>
             <span>height:</span><span>{{ pokemon.height / 10 }}m</span>
+        </div>
+        <div>
+            <span>weight:</span><span>{{ pokemon.weight / 10 }}kg</span>
         </div>
     </div>
 </div>

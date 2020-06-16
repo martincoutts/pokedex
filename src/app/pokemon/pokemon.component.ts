@@ -18,19 +18,40 @@ export class PokemonComponent implements OnInit {
     ) {}
     id;
     pokemon;
+    pokemonSpecies;
     name;
-    stats;
 
     ngOnInit() {
         this.route.paramMap.subscribe((params) => {
             this.id = params.get('id');
         });
 
-        this.service.getItem(this.id).subscribe((response) => {
+        this.service.getItem(this.id, 'pokemon').subscribe((response) => {
             this.pokemon = response;
             this.name = this.utilities.capitalizeFirstLetter(this.pokemon.name);
-            this.stats = this.pokemon.stats;
-            console.log(this.pokemon);
         });
+
+        this.service
+            .getItem(this.id, 'pokemon-species')
+            .subscribe((response) => {
+                this.pokemonSpecies = response;
+
+                this.service
+                    .getItem(
+                        this.id,
+                        'evolution-chain',
+                        response.evolution_chain.url
+                    )
+                    .subscribe((response) => {
+                        this.evolutionChainResponse = response;
+                        console.log(this.evolutionChainResponse);
+                    });
+            });
     }
+
+    // TODO break out into new component
+    // getEvolutionChain(){
+    //   let evolvesTo this.service.getItem(null, null, this.evolutionChainResponse.evolves_to.species.url);
+
+    // }
 }
