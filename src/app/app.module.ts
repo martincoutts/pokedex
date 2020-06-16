@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { ScreenComponent } from './screen/screen.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { CommonModule } from '@angular/common';
+import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
         ScreenComponent,
         PokemonListComponent,
         PokemonComponent,
+        EvolutionChainComponent,
     ],
     imports: [
         BrowserModule,

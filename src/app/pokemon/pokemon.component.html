@@ -19,4 +19,8 @@
             <span>weight:</span><span>{{ pokemon.weight / 10 }}kg</span>
         </div>
     </div>
+    <evolution-chain
+        *ngIf="evolutionChainResponse"
+        [evolutionChain]="evolutionChainResponse"
+    ></evolution-chain>
 </div>
