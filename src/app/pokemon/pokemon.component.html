@@ -1,5 +1,5 @@
 <div class="pokemon">
-    <h1>#{{ pokemon.id }} {{ name }}</h1>
+    <h1>#{{ pokemon.id }} {{ pokemon.name | capitalizeFirstLetter }}</h1>
     <div>
         <img
             class="pokemon__image"
@@ -19,9 +19,15 @@
             <span>weight:</span><span>{{ pokemon.weight / 10 }}kg</span>
         </div>
     </div>
+    <div class="pokemon__types">
+        <div *ngFor="let type of pokemon.types">
+            <span>{{ type.type.name }}</span>
+        </div>
+    </div>
     <evolution-chain
         *ngIf="evolutionChainResponse"
         [evolutionChain]="evolutionChainResponse"
     ></evolution-chain>
+    <weaknesses [types]="pokemon.types"></weaknesses>
     <button nz-button nzType="primary" (click)="goBack()">Back</button>
 </div>

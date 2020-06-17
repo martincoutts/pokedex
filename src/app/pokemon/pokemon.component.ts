@@ -1,5 +1,3 @@
-import { UtilitiesService } from './../services/utilities.service';
-
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,13 +12,12 @@ export class PokemonComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private service: PokemonService,
-        private utilities: UtilitiesService,
+
         private location: Location
     ) {}
     id;
     pokemon;
     pokemonSpecies;
-    name;
     evolutionChainResponse;
 
     ngOnInit() {
@@ -30,7 +27,6 @@ export class PokemonComponent implements OnInit {
 
         this.service.getItem(this.id, 'pokemon').subscribe((response) => {
             this.pokemon = response;
-            this.name = this.utilities.capitalizeFirstLetter(this.pokemon.name);
         });
 
         this.service
