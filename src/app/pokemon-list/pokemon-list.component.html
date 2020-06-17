@@ -1,4 +1,4 @@
-<div *ngIf="hasImages">
+<div *ngIf="hasImages; else spinner">
     <div *ngFor="let pokemon of pokemonList; index as i">
         <a [routerLink]="['pokemon', pokemon.pokemon.entry_number]"
             ><img [src]="pokemon.avatar" />
@@ -8,3 +8,7 @@
         >
     </div>
 </div>
+
+<ng-template #spinner>
+    <nz-spin nzSimple></nz-spin>
+</ng-template>

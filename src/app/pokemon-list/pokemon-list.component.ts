@@ -11,11 +11,11 @@ export class PokemonListComponent implements OnInit {
     constructor(private service: PokemonService) {}
     pokemonList: any[] = [];
 
-    hasImages: boolean = false;
+    hasImages = false;
 
     ngOnInit() {
         this.service.getAll().subscribe((response) => {
-            this.getImages(response['pokemon_entries']);
+            this.getImages(response.pokemon_entries);
         });
     }
 
@@ -23,11 +23,11 @@ export class PokemonListComponent implements OnInit {
         const fetchPromise = new Promise((resolve, reject) => {
             value.map((pokemon, index) => {
                 this.service
-                    .getItem(pokemon['entry_number'], 'pokemon')
+                    .getItem(pokemon.entry_number, 'pokemon')
                     .subscribe((response) => {
                         const pokemonObject = {
                             pokemon,
-                            avatar: response['sprites'].front_default,
+                            avatar: response.sprites.front_default,
                         };
 
                         this.pokemonList.push(pokemonObject);
