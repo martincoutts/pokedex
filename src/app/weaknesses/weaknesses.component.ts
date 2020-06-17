@@ -26,7 +26,7 @@ export class WeaknessesComponent implements OnInit {
                     .getItem(null, null, type.type.url)
                     .subscribe((response) => {
                         tempArray.push(
-                            response.damage_relations.double_damage_from
+                            response['damage_relations'].double_damage_from
                         );
                         resolve(tempArray);
                     });

@@ -38,7 +38,7 @@ export class PokemonComponent implements OnInit {
                     .getItem(
                         this.id,
                         'evolution-chain',
-                        response.evolution_chain.url
+                        response['evolution_chain'].url
                     )
                     .subscribe((response) => {
                         this.evolutionChainResponse = response;

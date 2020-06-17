@@ -25,7 +25,7 @@ export class EvolutionChainComponent implements OnInit {
 
         for (let i = 0; i <= evolutionChain.length; i++) {
             for (const [key, value] of Object.entries(evolutionChain[count])) {
-                if (key === 'evolves_to' && value.length > 0) {
+                if (key === 'evolves_to' && value['length'] > 0) {
                     evolutionChain.push(value[0]);
                     count++;
                     evolutionChainComplete = true;
@@ -43,10 +43,10 @@ export class EvolutionChainComponent implements OnInit {
                     )
                     .subscribe((response) => {
                         const cellData = {
-                            name: response.name,
-                            avatar: response.sprites.front_default,
-                            types: response.types,
-                            order: response.order,
+                            name: response['name'],
+                            avatar: response['sprites'].front_default,
+                            types: response['types'],
+                            order: response['order'],
                         };
 
                         this.cellData.push(cellData);
