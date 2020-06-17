@@ -1,4 +1,5 @@
-import { UtilitiesService } from './../utilities.service';
+import { UtilitiesService } from './../services/utilities.service';
+
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit, Input } from '@angular/core';
 

@@ -1,5 +1,6 @@
-import { UtilitiesService } from './utilities.service';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { PokemonComponent } from './pokemon/pokemon.component';
+import { UtilitiesService } from './services/utilities.service';
 import { PokemonService } from './services/pokemon.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -28,6 +29,7 @@ import { EvolutionChainComponent } from './evolution-chain/evolution-chain.compo
             { path: '', component: PokemonListComponent },
             { path: 'pokemon/:id', component: PokemonComponent },
         ]),
+        NzButtonModule,
     ],
     providers: [PokemonService, UtilitiesService],
     bootstrap: [AppComponent],

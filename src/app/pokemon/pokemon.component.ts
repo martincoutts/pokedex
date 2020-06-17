@@ -1,9 +1,9 @@
-import { UtilitiesService } from './../utilities.service';
+import { UtilitiesService } from './../services/utilities.service';
 
-import { CommonModule } from '@angular/common';
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'pokemon',
@@ -14,7 +14,8 @@ export class PokemonComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private service: PokemonService,
-        private utilities: UtilitiesService
+        private utilities: UtilitiesService,
+        private location: Location
     ) {}
     id;
     pokemon;
@@ -47,5 +48,9 @@ export class PokemonComponent implements OnInit {
                         this.evolutionChainResponse = response;
                     });
             });
+    }
+
+    goBack() {
+        this.location.back();
     }
 }
