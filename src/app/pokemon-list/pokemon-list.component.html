@@ -1,11 +1,10 @@
 <div>
-    <ul>
-        <a
-            *ngFor="let pokemon of pokemonList"
-            [routerLink]="['pokemon', pokemon.entry_number]"
-            ><li>
+    <div *ngFor="let pokemon of pokemonList; index as i">
+        <a [routerLink]="['pokemon', pokemon.entry_number]"
+            ><img [src]="imageList[i]" />
+            <span>
                 {{ pokemon.pokemon_species.name }}
-            </li></a
+            </span></a
         >
-    </ul>
+    </div>
 </div>
