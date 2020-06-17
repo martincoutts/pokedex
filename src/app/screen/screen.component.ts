@@ -1,5 +1,5 @@
-import { PokemonService } from './../services/pokemon.service'
-import { Component, OnInit } from '@angular/core'
+import { PokemonService } from './../services/pokemon.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'screen',
@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core'
 })
 export class ScreenComponent implements OnInit {
     constructor(private service: PokemonService) {}
-    pokemon: any
-    imageUrl: string
+    pokemon: any;
+    imageUrl: string;
 
     ngOnInit() {
         this.service.getAll().subscribe((response) => {
             // this.service.allPokemon = response["pokemon_entries"];
-        })
+        });
 
         // this.service.getItem(32).subscribe((response) => {
         //   this.service.pokemon = response;

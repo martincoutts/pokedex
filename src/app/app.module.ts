@@ -1,16 +1,22 @@
-import { UtilitiesService } from './utilities.service';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { PokemonComponent } from './pokemon/pokemon.component';
+
 import { PokemonService } from './services/pokemon.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ScreenComponent } from './screen/screen.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { CommonModule } from '@angular/common';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
+import { WeaknessesComponent } from './weaknesses/weaknesses.component';
+import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
 
 @NgModule({
     declarations: [
@@ -19,6 +25,8 @@ import { EvolutionChainComponent } from './evolution-chain/evolution-chain.compo
         PokemonListComponent,
         PokemonComponent,
         EvolutionChainComponent,
+        WeaknessesComponent,
+        CapitalizeFirstLetterPipe,
     ],
     imports: [
         BrowserModule,
@@ -28,8 +36,12 @@ import { EvolutionChainComponent } from './evolution-chain/evolution-chain.compo
             { path: '', component: PokemonListComponent },
             { path: 'pokemon/:id', component: PokemonComponent },
         ]),
+        NzButtonModule,
+        NzModalModule,
+        BrowserAnimationsModule,
+        NzSpinModule,
     ],
-    providers: [PokemonService, UtilitiesService],
+    providers: [PokemonService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

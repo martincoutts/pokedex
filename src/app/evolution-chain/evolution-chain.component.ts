@@ -1,4 +1,3 @@
-import { UtilitiesService } from './../utilities.service';
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,10 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./evolution-chain.component.scss'],
 })
 export class EvolutionChainComponent implements OnInit {
-    constructor(
-        private service: PokemonService,
-        private utilities: UtilitiesService
-    ) {}
+    constructor(private service: PokemonService) {}
     cellData: any[] = [];
     sortedCellData: any[];
 
@@ -24,12 +20,12 @@ export class EvolutionChainComponent implements OnInit {
     getEvolutionChain() {
         const evolutionChain = [this.evolutionChain.chain];
 
-        let count: number = 0;
+        let count = 0;
         let evolutionChainComplete = false;
 
         for (let i = 0; i <= evolutionChain.length; i++) {
-            for (let [key, value] of Object.entries(evolutionChain[count])) {
-                if (key === 'evolves_to' && value['length'] > 0) {
+            for (const [key, value] of Object.entries(evolutionChain[count])) {
+                if (key === 'evolves_to' && value.length > 0) {
                     evolutionChain.push(value[0]);
                     count++;
                     evolutionChainComplete = true;
@@ -47,14 +43,11 @@ export class EvolutionChainComponent implements OnInit {
                     )
                     .subscribe((response) => {
                         const cellData = {
-                            name: this.utilities.capitalizeFirstLetter(
-                                response['name']
-                            ),
-                            avatar: response['sprites'].front_default,
-                            types: response['types'],
-                            order: response['order'],
+                            name: response.name,
+                            avatar: response.sprites.front_default,
+                            types: response.types,
+                            order: response.order,
                         };
-                        console.log('cell data', cellData);
 
                         this.cellData.push(cellData);
                         // * Makes sure evolution chain renders in correct order
