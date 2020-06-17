@@ -9,14 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonListComponent implements OnInit {
     constructor(private service: PokemonService) {}
-    pokemonList: any[];
-    imageList: any[] = [];
-    gotImages: boolean = false;
+    pokemonList: any[] = [];
+
+    hasImages: boolean = false;
 
     ngOnInit() {
         this.service.getAll().subscribe((response) => {
-            // tslint:disable-next-line: no-string-literal
-            this.pokemonList = response['pokemon_entries'];
             this.getImages(response['pokemon_entries']);
         });
     }
@@ -27,15 +25,23 @@ export class PokemonListComponent implements OnInit {
                 this.service
                     .getItem(pokemon['entry_number'], 'pokemon')
                     .subscribe((response) => {
-                        this.imageList.push(response['sprites'].front_default);
-                        if (this.pokemonList.length === this.imageList.length) {
+                        const pokemonObject = {
+                            pokemon,
+                            avatar: response['sprites'].front_default,
+                        };
+
+                        this.pokemonList.push(pokemonObject);
+                        if (this.pokemonList.length === value.length) {
                             resolve('Success');
                         }
                     });
             });
         });
         fetchPromise.then(() => {
-            this.gotImages = true;
+            this.pokemonList.sort(
+                (a, b) => a.pokemon.entry_number - b.pokemon.entry_number
+            );
+            this.hasImages = true;
         });
     }
 }

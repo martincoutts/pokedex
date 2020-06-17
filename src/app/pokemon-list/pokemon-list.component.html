@@ -1,9 +1,9 @@
-<div>
+<div *ngIf="hasImages">
     <div *ngFor="let pokemon of pokemonList; index as i">
-        <a [routerLink]="['pokemon', pokemon.entry_number]"
-            ><img [src]="imageList[i]" />
+        <a [routerLink]="['pokemon', pokemon.pokemon.entry_number]"
+            ><img [src]="pokemon.avatar" />
             <span>
-                {{ pokemon.pokemon_species.name }}
+                {{ pokemon.pokemon.pokemon_species.name }}
             </span></a
         >
     </div>
