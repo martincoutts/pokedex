@@ -58,12 +58,9 @@ export class EvolutionChainComponent implements OnInit {
 
                         this.cellData.push(cellData);
                         // * Makes sure evolution chain renders in correct order
-                        this.sortedCellData = this.cellData.sort(function (
-                            a,
-                            b
-                        ) {
-                            return a.order - b.order;
-                        });
+                        this.sortedCellData = this.cellData.sort(
+                            (a, b) => a.order - b.order
+                        );
                     });
             });
         }
