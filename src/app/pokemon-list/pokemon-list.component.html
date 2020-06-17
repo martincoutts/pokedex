@@ -3,14 +3,23 @@
         *ngFor="let pokemon of pokemonList; index as i"
         class="pokemon-list__pokemon"
     >
-        <a [routerLink]="['pokemon', pokemon.pokemon.entry_number]"
-            ><img [src]="pokemon.avatar" />
-            <h4>
-                {{
-                    pokemon.pokemon.pokemon_species.name | capitalizeFirstLetter
-                }}
-            </h4></a
-        >
+        <a [routerLink]="['pokemon', pokemon.pokemon.entry_number]">
+            <div class="pokemon-list__image">
+                <img
+                    [src]="pokemon.avatar"
+                    [alt]="pokemon.pokemon.pokemon_species.name + ' logo'"
+                />
+            </div>
+
+            <div class="pokemon-list__name">
+                <h3>
+                    {{
+                        pokemon.pokemon.pokemon_species.name
+                            | capitalizeFirstLetter
+                    }}
+                </h3>
+            </div>
+        </a>
     </div>
 </div>
 

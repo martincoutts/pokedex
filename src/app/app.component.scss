@@ -1,10 +1,11 @@
 @import '../scss/index.scss';
 .app {
     font-size: $font-size-base;
-    background-color: $pokedex-red;
-    height: 100vh;
+    font-family: $font-primary;
+
     width: 100%;
     padding: 0 3rem;
+    background-color: $pokedex-red;
 
     display: grid;
     grid-template-columns: 1fr;
