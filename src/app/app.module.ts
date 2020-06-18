@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
 import { WeaknessesComponent } from './weaknesses/weaknesses.component';
 import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
+import { NumberPadPipe } from './pipes/number-pad.pipe';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe'
         EvolutionChainComponent,
         WeaknessesComponent,
         CapitalizeFirstLetterPipe,
+        NumberPadPipe,
     ],
     imports: [
         BrowserModule,

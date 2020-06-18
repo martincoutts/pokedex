@@ -1,5 +1,7 @@
 <div class="pokemon">
-    <h1>#{{ pokemon.id }} {{ pokemon.name | capitalizeFirstLetter }}</h1>
+    <h1>
+        #{{ pokemon.id | numberPad }} {{ pokemon.name | capitalizeFirstLetter }}
+    </h1>
     <div>
         <img
             class="pokemon__image"
