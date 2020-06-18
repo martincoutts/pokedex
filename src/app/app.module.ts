@@ -1,6 +1,7 @@
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+
 import { PokemonComponent } from './pokemon/pokemon.component';
 
 import { PokemonService } from './services/pokemon.service';
@@ -36,6 +37,7 @@ import { NumberPadPipe } from './pipes/number-pad.pipe';
         HttpClientModule,
         RouterModule.forRoot([
             { path: '', component: PokemonListComponent },
+            { path: '?page=1&limit=151', component: PokemonListComponent },
             { path: 'pokemon/:id', component: PokemonComponent },
         ]),
         NzButtonModule,

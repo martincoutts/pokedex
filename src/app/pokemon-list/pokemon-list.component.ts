@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,12 +9,22 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./pokemon-list.component.scss'],
 })
 export class PokemonListComponent implements OnInit {
-    constructor(private service: PokemonService) {}
+    constructor(
+        private service: PokemonService,
+        private router: Router,
+        private route: ActivatedRoute
+    ) {}
     pokemonList: any[] = [];
-
+    slicedPokemonList: any[];
     hasImages = false;
 
+    page: number = 1;
+    limit = 151;
+
     ngOnInit() {
+        this.router.navigate(['/'], {
+            queryParams: { page: this.page, limit: this.page * 151 },
+        });
         // *Checks if item is in localstorage to prevent excessive fetching of images
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
@@ -23,6 +34,10 @@ export class PokemonListComponent implements OnInit {
                 this.getImages(response['pokemon_entries']);
             });
         }
+
+        this.route.queryParamMap.subscribe((params) => {
+            this.limit = parseInt(params.get('limit'));
+        });
     }
 
     getImages(value) {
@@ -52,6 +67,13 @@ export class PokemonListComponent implements OnInit {
                 'pokemonList',
                 JSON.stringify(this.pokemonList)
             );
+        });
+    }
+
+    loadMore() {
+        this.page++;
+        this.router.navigate(['/'], {
+            queryParams: { page: this.page, limit: this.page * 151 },
         });
     }
 }

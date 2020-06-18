@@ -1,7 +1,36 @@
-<div class="pokemon">
-    <h1>
-        #{{ pokemon.id | numberPad }} {{ pokemon.name | capitalizeFirstLetter }}
-    </h1>
+<div *ngIf="dataLoaded; else spinner" class="pokemon">
+    <div class="pokemon__header">
+        <h1>
+            #{{ pokemon.id | numberPad }}
+            {{ pokemon.name | capitalizeFirstLetter }}
+        </h1>
+        <button
+            *ngIf="pokemon.id - 1"
+            nz-button
+            nzType="primary"
+            (click)="navigateToPokemon(pokemon.id - 1)"
+        >
+            < #{{ pokemon.id - 1 | numberPad }}
+            {{
+                pokemonList[pokemon.id - 2].pokemon.pokemon_species.name
+                    | capitalizeFirstLetter
+            }}
+        </button>
+        <button
+            *ngIf="pokemon.id + 1"
+            nz-button
+            nzType="primary"
+            (click)="navigateToPokemon(pokemon.id + 1)"
+        >
+            #{{ pokemon.id + 1 | numberPad }}
+            {{
+                pokemonList[pokemon.id].pokemon.pokemon_species.name
+                    | capitalizeFirstLetter
+            }}
+            >
+        </button>
+    </div>
+
     <div>
         <img
             class="pokemon__image"
@@ -9,7 +38,7 @@
             [alt]="pokemon.name + ' avatar'"
         />
     </div>
-    <p>{{ pokemonSpecies.flavor_text_entries[52].flavor_text }}</p>
+    <p>{{ pokemonSpecies.flavor_text_entries[3].flavor_text }}</p>
     <div class="pokemon__stats">
         <div *ngFor="let stat of pokemon.stats">
             <span>{{ stat.stat.name }}:</span><span>{{ stat.base_stat }}</span>
@@ -31,5 +60,9 @@
         [evolutionChain]="evolutionChainResponse"
     ></evolution-chain>
     <weaknesses [types]="pokemon.types"></weaknesses>
-    <button nz-button nzType="primary" (click)="goBack()">Back</button>
+    <button nz-button nzType="primary" (click)="goHome()">Back to List</button>
 </div>
+
+<ng-template #spinner>
+    <nz-spin nzSimple></nz-spin>
+</ng-template>

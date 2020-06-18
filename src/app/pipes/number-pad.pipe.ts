@@ -15,7 +15,6 @@ export class NumberPadPipe implements PipeTransform {
             returnString = valueString;
         }
 
-        console.log(returnString);
         return returnString;
     }
 }
