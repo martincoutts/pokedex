@@ -1,13 +1,10 @@
 <div *ngIf="dataLoaded; else spinner" class="pokemon">
     <div class="pokemon__header">
-        <h1>
-            #{{ pokemon.id | numberPad }}
-            {{ pokemon.name | capitalizeFirstLetter }}
-        </h1>
         <button
             *ngIf="pokemon.id - 1"
             nz-button
             nzType="primary"
+            nzSize="large"
             (click)="navigateToPokemon(pokemon.id - 1)"
         >
             < #{{ pokemon.id - 1 | numberPad }}
@@ -16,9 +13,15 @@
                     | capitalizeFirstLetter
             }}
         </button>
+        <h1>
+            #{{ pokemon.id | numberPad }}
+            {{ pokemon.name | capitalizeFirstLetter }}
+        </h1>
+
         <button
             *ngIf="pokemon.id + 1"
             nz-button
+            nzSize="large"
             nzType="primary"
             (click)="navigateToPokemon(pokemon.id + 1)"
         >

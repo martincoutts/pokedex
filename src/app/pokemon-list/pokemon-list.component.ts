@@ -19,7 +19,9 @@ export class PokemonListComponent implements OnInit {
     hasImages = false;
 
     page: number = 1;
-    limit = 151;
+    limit: number = 151;
+    maxLimit: number;
+    limitReached: boolean = false;
 
     ngOnInit() {
         this.router.navigate(['/'], {
@@ -37,6 +39,7 @@ export class PokemonListComponent implements OnInit {
 
         this.route.queryParamMap.subscribe((params) => {
             this.limit = parseInt(params.get('limit'));
+            this.maxLimit = this.pokemonList.length;
         });
     }
 
@@ -72,8 +75,10 @@ export class PokemonListComponent implements OnInit {
 
     loadMore() {
         this.page++;
+        const limit: number = this.page * 151;
+        limit >= this.maxLimit ? (this.limitReached = true) : null;
         this.router.navigate(['/'], {
-            queryParams: { page: this.page, limit: this.page * 151 },
+            queryParams: { page: this.page, limit },
         });
     }
 }

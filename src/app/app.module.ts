@@ -19,6 +19,7 @@ import { EvolutionChainComponent } from './evolution-chain/evolution-chain.compo
 import { WeaknessesComponent } from './weaknesses/weaknesses.component';
 import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe';
 import { NumberPadPipe } from './pipes/number-pad.pipe';
+import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { NumberPadPipe } from './pipes/number-pad.pipe';
         WeaknessesComponent,
         CapitalizeFirstLetterPipe,
         NumberPadPipe,
+        PokemonImageComponent,
     ],
     imports: [
         BrowserModule,
