@@ -30,10 +30,14 @@ export class PokemonListComponent implements OnInit {
         // *Checks if item is in localstorage to prevent excessive fetching of images
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
+            console.log('pokemonList', this.pokemonList);
             this.hasImages = true;
         } else {
             this.service.getAll().subscribe((response) => {
-                this.getImages(response['pokemon_entries']);
+                this.pokemonList = response['pokemon_entries'];
+                console.log('pokemonList', this.pokemonList);
+                this.getPokemonList();
+                // console.log('pokemonList', this.pokemonList);
             });
         }
 
@@ -43,34 +47,11 @@ export class PokemonListComponent implements OnInit {
         });
     }
 
-    getImages(value) {
-        const fetchPromise = new Promise((resolve, reject) => {
-            value.map((pokemon, index) => {
-                this.service
-                    .getItem(pokemon.entry_number, 'pokemon')
-                    .subscribe((response) => {
-                        const pokemonObject = {
-                            pokemon,
-                            avatar: response['sprites'].front_default,
-                        };
-
-                        this.pokemonList.push(pokemonObject);
-                        if (this.pokemonList.length === value.length) {
-                            resolve('Success');
-                        }
-                    });
-            });
-        });
-        fetchPromise.then(() => {
-            this.pokemonList.sort(
-                (a, b) => a.pokemon.entry_number - b.pokemon.entry_number
-            );
-            this.hasImages = true;
-            localStorage.setItem(
-                'pokemonList',
-                JSON.stringify(this.pokemonList)
-            );
-        });
+    getPokemonList() {
+        this.pokemonList.sort((a, b) => a.entry_number - b.entry_number);
+        console.log('pokemonList', this.pokemonList);
+        this.hasImages = true;
+        localStorage.setItem('pokemonList', JSON.stringify(this.pokemonList));
     }
 
     loadMore() {

@@ -1,7 +1,7 @@
 <div class="pokemon__weaknesses">
     <div>
         <span *ngFor="let weakness of minWeaknesses; index as i">{{
-            weakness.name
+            weakness | json
         }}</span>
         <button nz-button [nzType]="'primary'" (click)="showModal()">
             <span>Show More</span>

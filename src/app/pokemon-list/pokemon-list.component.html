@@ -2,21 +2,13 @@
     <div *ngIf="hasImages; else spinner" class="pokemon-list">
         <ng-container *ngFor="let pokemon of pokemonList; index as i">
             <div *ngIf="i < limit" class="pokemon-list__pokemon">
-                <a [routerLink]="['pokemon', pokemon.pokemon.entry_number]">
-                    <!-- <div class="pokemon-list__image">
-                        <img
-                            [src]="pokemon.avatar"
-                            [alt]="
-                                pokemon.pokemon.pokemon_species.name + ' logo'
-                            "
-                        />
-                    </div> -->
-                    <pokemon-image [pokemon]="pokemon.pokemon"></pokemon-image>
+                <a [routerLink]="['pokemon', pokemon.entry_number]">
+                    <pokemon-image [pokemon]="pokemon"></pokemon-image>
 
                     <div class="pokemon-list__name">
                         <h3>
                             {{
-                                pokemon.pokemon.pokemon_species.name
+                                pokemon.pokemon_species.name
                                     | capitalizeFirstLetter
                             }}
                         </h3>
