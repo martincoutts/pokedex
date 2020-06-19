@@ -15,56 +15,61 @@ export class PokemonComponent implements OnInit {
 
         private router: Router
     ) {}
-    id;
-    pokemon;
-    pokemonList;
+    id: number;
+    pokemon: any;
+    pokemonList: any[];
     pokemonSpecies;
     evolutionChainResponse;
-    dataLoaded: boolean = false;
+    dataLoaded = false;
 
     ngOnInit() {
         this.getData();
         // *Checks if item is in localstorage to prevent excessive fetching of images
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
-            console.log('pokemonList', this.pokemonList);
         } else {
-            this.service.getItem(this.id, 'pokemon').subscribe((response) => {
-                this.pokemonList = response;
-                console.log('pokemonList', this.pokemonList);
+            this.service.getAll().subscribe((response) => {
+                this.pokemonList = response['pokemon_entries'];
+                this.getPokemonList();
             });
         }
+    }
+
+    getPokemonList() {
+        this.pokemonList.sort((a, b) => a.entry_number - b.entry_number);
+
+        localStorage.setItem('pokemonList', JSON.stringify(this.pokemonList));
     }
 
     getData(id?: number) {
         id
             ? (this.id = id)
             : this.route.paramMap.subscribe((params) => {
-                  this.id = params.get('id');
+                  this.id = parseInt(params.get('id'), 10);
               });
         const promise = new Promise((resolve, reject) => {
             this.dataLoaded = false;
             this.service.getItem(this.id, 'pokemon').subscribe((response) => {
                 this.pokemon = response;
                 console.log('this.pokemon', this.pokemon);
+
                 resolve('Success');
             });
         });
         promise.then((value) => {
             this.service
                 .getItem(this.id, 'pokemon-species')
-                .subscribe((response) => {
-                    this.pokemonSpecies = response;
-                    console.log('this.pokemonSpecies', this.pokemonSpecies);
+                .subscribe((responseA) => {
+                    this.pokemonSpecies = responseA;
 
                     this.service
                         .getItem(
                             this.id,
                             'evolution-chain',
-                            response['evolution_chain'].url
+                            responseA['evolution_chain'].url
                         )
-                        .subscribe((response) => {
-                            this.evolutionChainResponse = response;
+                        .subscribe((responseB) => {
+                            this.evolutionChainResponse = responseB;
                             this.dataLoaded = true;
                         });
                 });
@@ -77,6 +82,8 @@ export class PokemonComponent implements OnInit {
     }
 
     goHome() {
-        this.router.navigate(['/']);
+        this.router.navigate(['/'], {
+            queryParams: { page: 1, limit: 151 },
+        });
     }
 }

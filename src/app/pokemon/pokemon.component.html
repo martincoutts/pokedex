@@ -2,9 +2,8 @@
     <div class="pokemon__header">
         <button
             *ngIf="pokemon.id - 1"
-            nz-button
-            nzType="primary"
-            nzSize="large"
+            mat-flat-button
+            color="primary"
             (click)="navigateToPokemon(pokemon.id - 1)"
         >
             < #{{ pokemon.id - 1 | numberPad }}
@@ -21,9 +20,8 @@
 
         <button
             *ngIf="pokemon.id + 1"
-            nz-button
-            nzSize="large"
-            nzType="primary"
+            mat-flat-button
+            color="primary"
             (click)="navigateToPokemon(pokemon.id + 1)"
         >
             #{{ pokemon.id + 1 | numberPad }}
@@ -60,10 +58,12 @@
         [evolutionChain]="evolutionChainResponse"
     ></evolution-chain>
 
-    <weaknesses [types]="pokemon.types"></weaknesses>
-    <button nz-button nzType="primary" (click)="goHome()">Back to List</button>
+    <!-- <weaknesses [types]="pokemon.types"></weaknesses> -->
+    <button mat-flat-button color="primary" (click)="goHome()">
+        Back to List
+    </button>
 </div>
 
 <ng-template #spinner>
-    <nz-spin nzSimple></nz-spin>
+   <spinner></spinner>
 </ng-template>

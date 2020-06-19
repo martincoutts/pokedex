@@ -19,7 +19,6 @@ export class WeaknessesComponent implements OnInit {
     }
 
     getWeaknesses() {
-        console.log('this.types', this.types);
         const promise = new Promise((resolve, reject) => {
             const tempArray: any[] = [];
             this.types.map((type) => {

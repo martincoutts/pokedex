@@ -1,7 +1,3 @@
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-
 import { PokemonComponent } from './pokemon/pokemon.component';
 
 import { PokemonService } from './services/pokemon.service';
@@ -21,6 +17,11 @@ import { CapitalizeFirstLetterPipe } from './pipes/capitalize-first-letter.pipe'
 import { NumberPadPipe } from './pipes/number-pad.pipe';
 import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SpinnerComponent } from './spinner/spinner.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,6 +33,7 @@ import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
         CapitalizeFirstLetterPipe,
         NumberPadPipe,
         PokemonImageComponent,
+        SpinnerComponent,
     ],
     imports: [
         BrowserModule,
@@ -42,10 +44,12 @@ import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
             { path: '?page=1&limit=151', component: PokemonListComponent },
             { path: 'pokemon/:id', component: PokemonComponent },
         ]),
-        NzButtonModule,
-        NzModalModule,
+        MatButtonModule,
+
         BrowserAnimationsModule,
-        NzSpinModule,
+
+        MatDialogModule,
+        MatProgressSpinnerModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],

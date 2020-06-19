@@ -18,7 +18,6 @@ export class PokemonImageComponent implements OnInit {
     }
 
     getImage() {
-        console.log('image', this.pokemon);
         this.id = this.pokemon.entry_number || this.pokemon.id;
         this.avatarUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.id}.png`;
     }

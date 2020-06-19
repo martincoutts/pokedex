@@ -17,13 +17,12 @@
             </div>
         </ng-container>
     </div>
-    <div class="pokemon-list-container__load-more-button">
+    <div *ngIf="hasImages" class="pokemon-list-container__load-more-button">
         <button
             [disabled]="limitReached"
             class="pokemon-list-container__load-more-button--button"
-            nz-button
-            nzType="primary"
-            nzBlock
+            mat-flat-button
+            color="primary"
             (click)="loadMore()"
         >
             Load More
@@ -32,5 +31,5 @@
 </div>
 
 <ng-template #spinner>
-    <nz-spin nzSimple></nz-spin>
+    <spinner></spinner>
 </ng-template>

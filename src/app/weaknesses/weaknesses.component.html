@@ -1,32 +1,5 @@
 <div class="pokemon__weaknesses">
-    <div>
-        <span *ngFor="let weakness of minWeaknesses; index as i">{{
-            weakness | json
-        }}</span>
-        <button nz-button [nzType]="'primary'" (click)="showModal()">
-            <span>Show More</span>
-        </button>
-    </div>
-    <nz-modal
-        [(nzVisible)]="isVisible"
-        nzTitle="Weaknesses"
-        [nzFooter]="modalFooter"
-        (nzOnCancel)="handleCancel()"
-        (nzOnOk)="handleOk()"
-    >
-        <div *ngFor="let array of fullWeaknesses; index as i">
-            <h4>{{ types[i].type.name | capitalizeFirstLetter }}</h4>
-            <span
-                [class]="'weaknesses__weakness weaknesses__weakness--' + j"
-                *ngFor="let weakness of array; index as j"
-                >{{ weakness.name }}</span
-            >
-        </div>
-
-        <ng-template #modalFooter>
-            <button nz-button nzType="primary" (click)="handleOk()">
-                Close
-            </button>
-        </ng-template>
-    </nz-modal>
+    <button mat-flat-button color="primary" (click)="showModal()">
+        <span>Show More</span>
+    </button>
 </div>

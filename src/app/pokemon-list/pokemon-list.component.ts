@@ -18,10 +18,10 @@ export class PokemonListComponent implements OnInit {
     slicedPokemonList: any[];
     hasImages = false;
 
-    page: number = 1;
-    limit: number = 151;
+    page = 1;
+    limit = 151;
     maxLimit: number;
-    limitReached: boolean = false;
+    limitReached = false;
 
     ngOnInit() {
         this.router.navigate(['/'], {
@@ -30,26 +30,25 @@ export class PokemonListComponent implements OnInit {
         // *Checks if item is in localstorage to prevent excessive fetching of images
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
-            console.log('pokemonList', this.pokemonList);
+
             this.hasImages = true;
         } else {
             this.service.getAll().subscribe((response) => {
                 this.pokemonList = response['pokemon_entries'];
-                console.log('pokemonList', this.pokemonList);
+
                 this.getPokemonList();
-                // console.log('pokemonList', this.pokemonList);
             });
         }
 
         this.route.queryParamMap.subscribe((params) => {
-            this.limit = parseInt(params.get('limit'));
+            this.limit = parseInt(params.get('limit'), 10);
             this.maxLimit = this.pokemonList.length;
         });
     }
 
     getPokemonList() {
         this.pokemonList.sort((a, b) => a.entry_number - b.entry_number);
-        console.log('pokemonList', this.pokemonList);
+
         this.hasImages = true;
         localStorage.setItem('pokemonList', JSON.stringify(this.pokemonList));
     }
@@ -57,6 +56,7 @@ export class PokemonListComponent implements OnInit {
     loadMore() {
         this.page++;
         const limit: number = this.page * 151;
+        // tslint:disable-next-line: no-unused-expression
         limit >= this.maxLimit ? (this.limitReached = true) : null;
         this.router.navigate(['/'], {
             queryParams: { page: this.page, limit },
