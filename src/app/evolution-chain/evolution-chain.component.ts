@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -10,8 +11,10 @@ export class EvolutionChainComponent implements OnInit {
     constructor(private service: PokemonService) {}
     cellData: any[] = [];
     sortedCellData: any[];
+    id: number;
 
     @Input() evolutionChain: any;
+    @Input() getData;
 
     ngOnInit() {
         this.getEvolutionChain();
@@ -42,11 +45,13 @@ export class EvolutionChainComponent implements OnInit {
                         `https://pokeapi.co/api/v2/pokemon/${object.species.name}/`
                     )
                     .subscribe((response) => {
+                        console.log('response', response);
                         const cellData = {
                             name: response['name'],
                             avatar: response['sprites'].front_default,
                             types: response['types'],
                             order: response['order'],
+                            id: response['id'],
                         };
 
                         this.cellData.push(cellData);

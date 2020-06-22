@@ -7,20 +7,35 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./pokemon-image.component.scss'],
 })
 export class PokemonImageComponent implements OnInit {
-    constructor(private service: PokemonService) {}
-    @Input() pokemon;
-    @Input() className: string;
+    constructor() {}
+    @Input() pokemon?;
+    @Input() className?: string;
+    @Input() imageURL?: string;
+    @Input() additionalClasses?: string = '';
     id: number;
 
     avatarUrl: string;
+    altText: string;
 
     ngOnInit() {
         this.getImage();
-        console.log('className', this.className);
     }
 
     getImage() {
-        this.id = this.pokemon.entry_number || this.pokemon.id;
-        this.avatarUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.id}.png`;
+        if (this.pokemon.entry_number) {
+            this.id = this.pokemon.entry_number;
+        } else if (this.pokemon.id) {
+            this.id = this.pokemon.id;
+        } else if (this.pokemon.name) {
+            this.id = this.pokemon.name;
+        }
+
+        this.altText = this.pokemon.pokemon_species
+            ? `${this.pokemon.pokemon_species.name} logo`
+            : 'pokemon-avatar';
+
+        this.avatarUrl = this.imageURL
+            ? this.imageURL
+            : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.id.toString()}.png`;
     }
 }

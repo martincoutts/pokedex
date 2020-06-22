@@ -9,6 +9,11 @@
 
         justify-items: center;
 
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
         .pokemon-list__image {
             padding: 3rem;
             border: solid 1px black;

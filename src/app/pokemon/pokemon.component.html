@@ -69,12 +69,19 @@
         </div>
     </div>
 
-    <evolution-chain
-        *ngIf="evolutionChainResponse"
-        [evolutionChain]="evolutionChainResponse"
-    ></evolution-chain>
+    <div class="pokemon__evolution-chain">
+        <evolution-chain
+            *ngIf="evolutionChainResponse"
+            [evolutionChain]="evolutionChainResponse"
+        ></evolution-chain>
+    </div>
 
-    <button mat-flat-button color="primary" (click)="goHome()">
+    <button
+        class="pokemon__back-button"
+        mat-flat-button
+        color="primary"
+        (click)="goHome()"
+    >
         Back to List
     </button>
 </div>

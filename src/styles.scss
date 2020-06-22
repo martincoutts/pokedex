@@ -58,3 +58,10 @@ body {
 .info__avatar {
     @include avatarSize(350px, 350px);
 }
+
+.evolution-chain__avatar {
+    max-width: 170px;
+    max-height: 170px;
+
+    @include avatarSize(150px, 150px);
+}

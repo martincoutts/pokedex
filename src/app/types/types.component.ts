@@ -93,6 +93,5 @@ export class TypesComponent implements OnInit {
             color: this.color,
             'background-color': this.backgroundColor,
         };
-        console.log(this.typeStyles);
     }
 }

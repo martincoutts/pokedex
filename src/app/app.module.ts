@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TypesComponent } from './types/types.component';
 
@@ -53,6 +54,7 @@ import { TypesComponent } from './types/types.component';
 
         MatProgressSpinnerModule,
         MatExpansionModule,
+        MatIconModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],

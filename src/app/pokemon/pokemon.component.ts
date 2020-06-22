@@ -1,7 +1,6 @@
 import { PokemonService } from './../services/pokemon.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
     selector: 'pokemon',
@@ -13,7 +12,7 @@ export class PokemonComponent implements OnInit {
         private route: ActivatedRoute,
         private service: PokemonService,
 
-        private router: Router
+        public router: Router
     ) {}
     id: number;
     pokemon: any;
@@ -24,6 +23,9 @@ export class PokemonComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
+        this.router.events.subscribe((val) => {
+            console.log('router events', val);
+        });
         // *Checks if item is in localstorage to prevent excessive fetching of images
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
@@ -42,6 +44,7 @@ export class PokemonComponent implements OnInit {
     }
 
     getData(id?: number) {
+        console.log('getData called');
         id
             ? (this.id = id)
             : this.route.paramMap.subscribe((params) => {
@@ -51,7 +54,6 @@ export class PokemonComponent implements OnInit {
             this.dataLoaded = false;
             this.service.getItem(this.id, 'pokemon').subscribe((response) => {
                 this.pokemon = response;
-                console.log('this.pokemon', this.pokemon);
 
                 resolve('Success');
             });
