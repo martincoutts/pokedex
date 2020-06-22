@@ -1,3 +1,15 @@
 $pokedex-red: #dc092d;
 $pokedex-yellow: #f6d52d;
 $image-background-color: #f2f2f2;
+$info-section-background-color: #ffffff;
+$stats-background-color: #30a7d7;
+
+// *Types colours
+@mixin grass {
+    background-color: #9bcb50;
+    color: black;
+}
+@mixin poison {
+    background-color: #b97fc9;
+    color: white;
+}

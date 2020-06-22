@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { TypesComponent } from './types/types.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
         NumberPadPipe,
         PokemonImageComponent,
         SpinnerComponent,
+        TypesComponent,
     ],
     imports: [
         BrowserModule,
