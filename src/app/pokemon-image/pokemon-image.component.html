@@ -1,3 +1,7 @@
 <div class="pokemon-avatar">
-    <img [src]="avatarUrl" [alt]="pokemon.pokemon_species.name + ' logo'" />
+    <img
+        [class]="'pokemon-avatar__image avatar ' + className"
+        [src]="avatarUrl"
+        [alt]="pokemon.pokemon_species.name + ' logo'"
+    />
 </div>

@@ -9,12 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PokemonImageComponent implements OnInit {
     constructor(private service: PokemonService) {}
     @Input() pokemon;
+    @Input() className: string;
     id: number;
 
     avatarUrl: string;
 
     ngOnInit() {
         this.getImage();
+        console.log('className', this.className);
     }
 
     getImage() {

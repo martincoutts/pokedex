@@ -3,7 +3,10 @@
         <ng-container *ngFor="let pokemon of pokemonList; index as i">
             <div *ngIf="i < limit" class="pokemon-list__pokemon">
                 <a [routerLink]="['pokemon', pokemon.entry_number]">
-                    <pokemon-image [pokemon]="pokemon"></pokemon-image>
+                    <pokemon-image
+                        className="pokemon-list__avatar"
+                        [pokemon]="pokemon"
+                    ></pokemon-image>
 
                     <div class="pokemon-list__name">
                         <h3>

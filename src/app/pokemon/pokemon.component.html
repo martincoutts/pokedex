@@ -33,21 +33,30 @@
         </button>
     </div>
 
-    <div>
-        <pokemon-image [pokemon]="pokemon"></pokemon-image>
+    <div class="pokemon__info">
+        <div class="info__image">
+            <pokemon-image
+                className="info__avatar"
+                [pokemon]="pokemon"
+            ></pokemon-image>
+        </div>
+        <p class="info__flavour-text">
+            {{ pokemonSpecies.flavor_text_entries[3].flavor_text }}
+        </p>
+        <div class="info__stats">
+            <div *ngFor="let stat of pokemon.stats">
+                <span>{{ stat.stat.name }}:</span
+                ><span>{{ stat.base_stat }}</span>
+            </div>
+            <div>
+                <span>height:</span><span>{{ pokemon.height / 10 }}m</span>
+            </div>
+            <div>
+                <span>weight:</span><span>{{ pokemon.weight / 10 }}kg</span>
+            </div>
+        </div>
     </div>
-    <p>{{ pokemonSpecies.flavor_text_entries[3].flavor_text }}</p>
-    <div class="pokemon__stats">
-        <div *ngFor="let stat of pokemon.stats">
-            <span>{{ stat.stat.name }}:</span><span>{{ stat.base_stat }}</span>
-        </div>
-        <div>
-            <span>height:</span><span>{{ pokemon.height / 10 }}m</span>
-        </div>
-        <div>
-            <span>weight:</span><span>{{ pokemon.weight / 10 }}kg</span>
-        </div>
-    </div>
+
     <div class="pokemon__types">
         <div *ngFor="let type of pokemon.types">
             <span>{{ type.type.name }}</span>
@@ -59,6 +68,7 @@
     ></evolution-chain>
 
     <!-- <weaknesses [types]="pokemon.types"></weaknesses> -->
+
     <button mat-flat-button color="primary" (click)="goHome()">
         Back to List
     </button>

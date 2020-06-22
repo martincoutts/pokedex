@@ -18,8 +18,9 @@ import { NumberPadPipe } from './pipes/number-pad.pipe';
 import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
@@ -48,8 +49,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 
         BrowserAnimationsModule,
 
-        MatDialogModule,
         MatProgressSpinnerModule,
+        MatExpansionModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],

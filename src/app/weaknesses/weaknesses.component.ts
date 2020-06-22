@@ -44,16 +44,4 @@ export class WeaknessesComponent implements OnInit {
             this.fullWeaknesses = value;
         });
     }
-
-    showModal(): void {
-        this.isVisible = true;
-    }
-
-    handleOk(): void {
-        this.isVisible = false;
-    }
-
-    handleCancel(): void {
-        this.isVisible = false;
-    }
 }
