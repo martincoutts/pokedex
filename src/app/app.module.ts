@@ -19,12 +19,14 @@ import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TypesComponent } from './types/types.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +41,7 @@ import { TypesComponent } from './types/types.component';
         PokemonImageComponent,
         SpinnerComponent,
         TypesComponent,
+        MenuBarComponent,
     ],
     imports: [
         BrowserModule,
@@ -57,6 +60,7 @@ import { TypesComponent } from './types/types.component';
         MatExpansionModule,
         MatIconModule,
         MatDividerModule,
+        MatInputModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],
