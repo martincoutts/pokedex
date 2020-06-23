@@ -1,9 +1,31 @@
-<div *ngIf="sortedCellData.length" class="evolution-chain">
-    <div *ngFor="let cell of sortedCellData">
-        <img [src]="cell.avatar" [alt]="cell.name + ' avatar'" />
-        <span>{{ cell.name | capitalizeFirstLetter }}</span>
-        <div>
-            <span *ngFor="let type of cell.types">{{ type.type.name }}</span>
+<div *ngIf="sortedCellData" class="evolution-chain">
+    <h2>Evolution Chain</h2>
+    <div
+        *ngFor="let cell of sortedCellData; index as i"
+        [class]="'evolution-chain__cell evolution-chain__cell--' + i"
+    >
+        <a (click)="navigateToPokemon(cell.id)">
+            <pokemon-image
+                className="evolution-chain__avatar"
+                [pokemon]="cell"
+                [imageURL]="cell.avatar"
+                additionalClasses="pokemon-avatar--rounded"
+            ></pokemon-image>
+        </a>
+
+        <h4>{{ cell.name | capitalizeFirstLetter }}</h4>
+        <div class="evolution-chain__types">
+            <types
+                *ngFor="let type of cell.types"
+                [class]="'type type__' + type.type.name"
+                [type]="type.type"
+            ></types>
         </div>
+    </div>
+    <div
+        *ngFor="let cell of sortedCellData; index as i"
+        [class]="'evolution-chain__icon arrow--' + i"
+    >
+        <mat-icon class="arrow-icon" *ngIf="i < 2">arrow_right_alt</mat-icon>
     </div>
 </div>

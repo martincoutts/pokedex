@@ -1,14 +1,38 @@
-<div *ngIf="hasImages; else spinner">
-    <div *ngFor="let pokemon of pokemonList; index as i">
-        <a [routerLink]="['pokemon', pokemon.pokemon.entry_number]"
-            ><img [src]="pokemon.avatar" />
-            <span>
-                {{ pokemon.pokemon.pokemon_species.name }}
-            </span></a
+<div class="pokemon-list-container">
+    <div *ngIf="hasImages; else spinner" class="pokemon-list">
+        <ng-container *ngFor="let pokemon of pokemonList; index as i">
+            <div *ngIf="i < limit" class="pokemon-list__pokemon">
+                <a [routerLink]="['pokemon', pokemon.entry_number]">
+                    <pokemon-image
+                        className="pokemon-list__avatar"
+                        [pokemon]="pokemon"
+                    ></pokemon-image>
+
+                    <div class="pokemon-list__name">
+                        <h3>
+                            {{
+                                pokemon.pokemon_species.name
+                                    | capitalizeFirstLetter
+                            }}
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </ng-container>
+    </div>
+    <div *ngIf="hasImages" class="pokemon-list-container__load-more-button">
+        <button
+            [disabled]="limitReached"
+            class="pokemon-list-container__load-more-button--button"
+            mat-flat-button
+            color="primary"
+            (click)="loadMore()"
         >
+            Load More
+        </button>
     </div>
 </div>
 
 <ng-template #spinner>
-    <nz-spin nzSimple></nz-spin>
+    <spinner [className]="'spinner--full-screen'"></spinner>
 </ng-template>

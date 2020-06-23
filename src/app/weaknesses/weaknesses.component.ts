@@ -24,7 +24,7 @@ export class WeaknessesComponent implements OnInit {
             this.types.map((type) => {
                 this.service
                     .getItem(null, null, type.type.url)
-                    .subscribe((response) => {
+                    .subscribe((response: any) => {
                         tempArray.push(
                             response.damage_relations.double_damage_from
                         );
@@ -43,17 +43,5 @@ export class WeaknessesComponent implements OnInit {
             this.minWeaknesses = minArray;
             this.fullWeaknesses = value;
         });
-    }
-
-    showModal(): void {
-        this.isVisible = true;
-    }
-
-    handleOk(): void {
-        this.isVisible = false;
-    }
-
-    handleCancel(): void {
-        this.isVisible = false;
     }
 }

@@ -1,5 +1,6 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { PokemonService } from './../services/pokemon.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'evolution-chain',
@@ -10,8 +11,11 @@ export class EvolutionChainComponent implements OnInit {
     constructor(private service: PokemonService) {}
     cellData: any[] = [];
     sortedCellData: any[];
+    id: number;
 
     @Input() evolutionChain: any;
+    @Input() getData;
+    @Output() clickedOnEvolution = new EventEmitter<number>();
 
     ngOnInit() {
         this.getEvolutionChain();
@@ -25,7 +29,8 @@ export class EvolutionChainComponent implements OnInit {
 
         for (let i = 0; i <= evolutionChain.length; i++) {
             for (const [key, value] of Object.entries(evolutionChain[count])) {
-                if (key === 'evolves_to' && value.length > 0) {
+                // tslint:disable-next-line: no-string-literal
+                if (key === 'evolves_to' && value['length'] > 0) {
                     evolutionChain.push(value[0]);
                     count++;
                     evolutionChainComplete = true;
@@ -41,12 +46,13 @@ export class EvolutionChainComponent implements OnInit {
                         null,
                         `https://pokeapi.co/api/v2/pokemon/${object.species.name}/`
                     )
-                    .subscribe((response) => {
+                    .subscribe((response: any) => {
                         const cellData = {
                             name: response.name,
                             avatar: response.sprites.front_default,
                             types: response.types,
                             order: response.order,
+                            id: response.id,
                         };
 
                         this.cellData.push(cellData);
@@ -57,5 +63,8 @@ export class EvolutionChainComponent implements OnInit {
                     });
             });
         }
+    }
+    navigateToPokemon(id: number) {
+        this.clickedOnEvolution.emit(id);
     }
 }

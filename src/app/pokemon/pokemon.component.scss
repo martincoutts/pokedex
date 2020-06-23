@@ -1,6 +1,92 @@
+@import '../../scss//index.scss';
 .pokemon {
-    &__image {
-        height: 300px;
-        width: 300px;
+    display: grid;
+
+    &__header {
+        grid-row: 1 / span 1;
+        padding: 2rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        h1 {
+            margin: 0 auto;
+        }
+        background-color: $pokedex-yellow;
+    }
+
+    &__info {
+        grid-row: 2 / span 1;
+        display: grid;
+        grid-template-columns: minmax(200px, auto) 1fr;
+        grid-template-rows: auto;
+        padding: 1rem;
+
+        background-color: $info-section-background-color;
+
+        .info {
+            &__image {
+                grid-column: 1 / span 1;
+                grid-row: 1 / span 2;
+
+                margin: 1rem;
+            }
+
+            &__flavour-text {
+                grid-column: 2 / span 1;
+                grid-row: 1 / span 1;
+
+                font-size: 1.5rem;
+                text-align: center;
+                padding: 0 1rem;
+                margin: 1rem;
+            }
+            &__stats {
+                grid-column: 2 / span 1;
+                grid-row: 2 / span 1;
+
+                background-color: $primary-blue;
+                padding: 1rem;
+                margin: 1rem 0;
+                font-size: 1.15rem;
+                border-radius: 6px;
+
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+
+                .stat {
+                    margin: 0 1rem;
+                    padding: 0.25rem;
+                    h4 {
+                        color: $info-section-background-color;
+                    }
+                }
+            }
+            &__types {
+                grid-column: 1 / span 1;
+                grid-row: 3 / span 1;
+
+                display: flex;
+                margin: 1rem;
+            }
+        }
+    }
+    &__evolution-chain {
+        grid-row: 3 / span 1;
+    }
+    &__back-button {
+        grid-row: 4 / span 1;
+        display: flex;
+
+        align-content: center;
+        justify-content: center;
+        padding: 0.5rem;
+    }
+
+    .back-button__spinner {
+        display: inline-flex;
+        margin: 0 1rem;
+        align-self: center;
     }
 }
