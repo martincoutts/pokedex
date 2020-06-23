@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { PokemonService } from './../services/pokemon.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'evolution-chain',
@@ -15,6 +15,7 @@ export class EvolutionChainComponent implements OnInit {
 
     @Input() evolutionChain: any;
     @Input() getData;
+    @Output() clickedOnEvolution = new EventEmitter<number>();
 
     ngOnInit() {
         this.getEvolutionChain();
@@ -45,7 +46,6 @@ export class EvolutionChainComponent implements OnInit {
                         `https://pokeapi.co/api/v2/pokemon/${object.species.name}/`
                     )
                     .subscribe((response) => {
-                        console.log('response', response);
                         const cellData = {
                             name: response['name'],
                             avatar: response['sprites'].front_default,
@@ -62,5 +62,8 @@ export class EvolutionChainComponent implements OnInit {
                     });
             });
         }
+    }
+    navigateToPokemon(id: number) {
+        this.clickedOnEvolution.emit(id);
     }
 }

@@ -73,6 +73,7 @@
         <evolution-chain
             *ngIf="evolutionChainResponse"
             [evolutionChain]="evolutionChainResponse"
+            (clickedOnEvolution)="receiveClickedOnEvolution($event)"
         ></evolution-chain>
     </div>
 

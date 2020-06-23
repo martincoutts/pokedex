@@ -11,7 +11,6 @@ export class PokemonComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private service: PokemonService,
-
         public router: Router
     ) {}
     id: number;
@@ -23,9 +22,7 @@ export class PokemonComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
-        this.router.events.subscribe((val) => {
-            console.log('router events', val);
-        });
+
         // *Checks if item is in localstorage to prevent excessive fetching of images
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
@@ -44,7 +41,6 @@ export class PokemonComponent implements OnInit {
     }
 
     getData(id?: number) {
-        console.log('getData called');
         id
             ? (this.id = id)
             : this.route.paramMap.subscribe((params) => {
@@ -81,6 +77,10 @@ export class PokemonComponent implements OnInit {
     navigateToPokemon(id: number) {
         this.getData(id);
         this.router.navigate(['pokemon', id]);
+    }
+
+    receiveClickedOnEvolution($event) {
+        this.navigateToPokemon($event);
     }
 
     goHome() {

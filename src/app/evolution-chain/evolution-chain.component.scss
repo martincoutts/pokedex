@@ -5,6 +5,10 @@
     grid-template-rows: auto 1fr;
     justify-items: center;
 
+    a:hover {
+        cursor: pointer;
+    }
+
     h2 {
         color: white;
         grid-column: 1 / span 5;
@@ -46,7 +50,7 @@
         .arrow-icon {
             align-self: center;
             color: $pokedex-yellow;
-            font-size: 60px;
+            font-size: 80px;
         }
     }
 

@@ -4,7 +4,7 @@
         *ngFor="let cell of sortedCellData; index as i"
         [class]="'evolution-chain__cell evolution-chain__cell--' + i"
     >
-        <a [routerLink]="['/pokemon', cell.id]">
+        <a (click)="navigateToPokemon(cell.id)">
             <pokemon-image
                 className="evolution-chain__avatar"
                 [pokemon]="cell"
