@@ -33,8 +33,8 @@ export class PokemonListComponent implements OnInit {
 
             this.hasImages = true;
         } else {
-            this.service.getAll().subscribe((response) => {
-                this.pokemonList = response['pokemon_entries'];
+            this.service.getAll().subscribe((response: any) => {
+                this.pokemonList = response.pokemon_entries;
 
                 this.getPokemonList();
             });

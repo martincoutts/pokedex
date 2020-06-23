@@ -7,15 +7,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TypesComponent implements OnInit {
     constructor() {}
-    ngOnInit() {
-        this.getClass();
-    }
 
     @Input() className: string;
     @Input() type;
     color: string;
     backgroundColor: string;
-    typeStyles: Object;
+    typeStyles: object;
+    ngOnInit() {
+        this.getClass();
+    }
 
     getClass() {
         switch (this.type.name) {

@@ -11,7 +11,7 @@ export class PokemonImageComponent implements OnInit {
     @Input() pokemon?;
     @Input() className?: string;
     @Input() imageURL?: string;
-    @Input() additionalClasses?: string = '';
+    @Input() additionalClasses = '';
     id: number;
 
     avatarUrl: string;

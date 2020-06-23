@@ -24,9 +24,9 @@ export class WeaknessesComponent implements OnInit {
             this.types.map((type) => {
                 this.service
                     .getItem(null, null, type.type.url)
-                    .subscribe((response) => {
+                    .subscribe((response: any) => {
                         tempArray.push(
-                            response['damage_relations'].double_damage_from
+                            response.damage_relations.double_damage_from
                         );
                         resolve(tempArray);
                     });

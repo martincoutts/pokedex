@@ -1,1 +1,3 @@
-<div class="spinner"><mat-spinner></mat-spinner></div>
+<div [class]="'spinner ' + className">
+    <mat-spinner [class]="className" [diameter]="spinnerDiamater"></mat-spinner>
+</div>

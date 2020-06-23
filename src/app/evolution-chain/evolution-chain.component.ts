@@ -29,6 +29,7 @@ export class EvolutionChainComponent implements OnInit {
 
         for (let i = 0; i <= evolutionChain.length; i++) {
             for (const [key, value] of Object.entries(evolutionChain[count])) {
+                // tslint:disable-next-line: no-string-literal
                 if (key === 'evolves_to' && value['length'] > 0) {
                     evolutionChain.push(value[0]);
                     count++;
@@ -45,13 +46,13 @@ export class EvolutionChainComponent implements OnInit {
                         null,
                         `https://pokeapi.co/api/v2/pokemon/${object.species.name}/`
                     )
-                    .subscribe((response) => {
+                    .subscribe((response: any) => {
                         const cellData = {
-                            name: response['name'],
-                            avatar: response['sprites'].front_default,
-                            types: response['types'],
-                            order: response['order'],
-                            id: response['id'],
+                            name: response.name,
+                            avatar: response.sprites.front_default,
+                            types: response.types,
+                            order: response.order,
+                            id: response.id,
                         };
 
                         this.cellData.push(cellData);

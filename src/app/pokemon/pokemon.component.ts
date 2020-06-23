@@ -19,6 +19,7 @@ export class PokemonComponent implements OnInit {
     pokemonSpecies;
     evolutionChainResponse;
     dataLoaded = false;
+    loadingRoute = false;
 
     ngOnInit() {
         this.getData();
@@ -27,8 +28,8 @@ export class PokemonComponent implements OnInit {
         if (localStorage.getItem('pokemonList') !== null) {
             this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
         } else {
-            this.service.getAll().subscribe((response) => {
-                this.pokemonList = response['pokemon_entries'];
+            this.service.getAll().subscribe((response: any) => {
+                this.pokemonList = response.pokemon_entries;
                 this.getPokemonList();
             });
         }
@@ -48,25 +49,27 @@ export class PokemonComponent implements OnInit {
               });
         const promise = new Promise((resolve, reject) => {
             this.dataLoaded = false;
-            this.service.getItem(this.id, 'pokemon').subscribe((response) => {
-                this.pokemon = response;
+            this.service
+                .getItem(this.id, 'pokemon')
+                .subscribe((response: any) => {
+                    this.pokemon = response;
 
-                resolve('Success');
-            });
+                    resolve('Success');
+                });
         });
         promise.then((value) => {
             this.service
                 .getItem(this.id, 'pokemon-species')
-                .subscribe((responseA) => {
+                .subscribe((responseA: any) => {
                     this.pokemonSpecies = responseA;
 
                     this.service
                         .getItem(
                             this.id,
                             'evolution-chain',
-                            responseA['evolution_chain'].url
+                            responseA.evolution_chain.url
                         )
-                        .subscribe((responseB) => {
+                        .subscribe((responseB: any) => {
                             this.evolutionChainResponse = responseB;
                             this.dataLoaded = true;
                         });
@@ -84,8 +87,15 @@ export class PokemonComponent implements OnInit {
     }
 
     goHome() {
-        this.router.navigate(['/'], {
-            queryParams: { page: 1, limit: 151 },
+        const promise = new Promise((resolve, reject) => {
+            this.loadingRoute = true;
+            resolve('Complete');
+        });
+
+        promise.then((val) => {
+            this.router.navigate(['/'], {
+                queryParams: { page: 1, limit: 151 },
+            });
         });
     }
 }
