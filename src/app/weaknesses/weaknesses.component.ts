@@ -20,34 +20,25 @@ export class WeaknessesComponent implements OnInit {
 
     getWeaknesses() {
         const promise = new Promise((resolve, reject) => {
-            const tempArray: any[] = [];
-            this.types.map((type) => {
+            const fullValue: any[] = [];
+            const minValue: any[] = [];
+            this.types.map((type, index) => {
                 this.service
                     .getItem(null, null, type.type.url)
                     .subscribe((response: any) => {
-                        tempArray.push(
+                        fullValue.push(
                             response.damage_relations.double_damage_from
                         );
-                        resolve(tempArray);
+                        minValue.push(
+                            response.damage_relations.double_damage_from[0]
+                        );
+                        resolve({ fullValue, minValue });
                     });
             });
         });
-        promise.then((value: any[]) => {
-            const tempArray: any[] = value;
-            const testArray = [];
-            console.log('value', value);
-
-            value.map((arr) => {
-                console.log('arr', arr[0]);
-            });
-
-            const minArray: any[] =
-                tempArray[0].length > 3
-                    ? tempArray[0].slice(0, 2)
-                    : tempArray[0].slice(0, tempArray[0].length - 1);
-
-            this.minWeaknesses = minArray;
-            this.fullWeaknesses = value;
+        promise.then((value: any) => {
+            this.minWeaknesses = value.minValue;
+            this.fullWeaknesses = value.fullValue;
         });
     }
 }

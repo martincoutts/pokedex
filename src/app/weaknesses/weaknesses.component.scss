@@ -31,6 +31,11 @@
             text-align: center;
         }
     }
+    &__types {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+    }
 }
 
 .content {

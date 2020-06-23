@@ -26,11 +26,13 @@
                         <h4>
                             {{ types[i].type.name | capitalizeFirstLetter }}
                         </h4>
-                        <types
-                            [class]="'type type__' + type.name"
-                            [type]="type"
-                            *ngFor="let type of array"
-                        ></types>
+                        <div class="weaknesses__types">
+                            <types
+                                [class]="'type type__' + type.name"
+                                [type]="type"
+                                *ngFor="let type of array"
+                            ></types>
+                        </div>
                     </div>
                 </div>
             </div>
