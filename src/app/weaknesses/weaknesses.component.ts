@@ -34,6 +34,12 @@ export class WeaknessesComponent implements OnInit {
         });
         promise.then((value: any[]) => {
             const tempArray: any[] = value;
+            const testArray = [];
+            console.log('value', value);
+
+            value.map((arr) => {
+                console.log('arr', arr[0]);
+            });
 
             const minArray: any[] =
                 tempArray[0].length > 3

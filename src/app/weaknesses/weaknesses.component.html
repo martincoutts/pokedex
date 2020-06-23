@@ -1,12 +1,39 @@
-<!-- <div class="pokemon__weaknesses">
-    <mat-accordion>
-        <mat-expansion-panel>
+<div class="pokemon__weaknesses">
+    <mat-accordion class="weaknesses__accordion" multi>
+        <mat-expansion-panel class="weaknesses__panel">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    TEST
+                    <div class="weaknesses__title">
+                        <h4>Weaknesses</h4>
+                    </div>
                 </mat-panel-title>
+                <mat-panel-description>
+                    <div class="weaknesses__description">
+                        <types
+                            [class]="'type type__' + type.name"
+                            [type]="type"
+                            *ngFor="let type of minWeaknesses"
+                        ></types>
+                    </div>
+                </mat-panel-description>
             </mat-expansion-panel-header>
-            TEST
+            <div class="weaknesses__content">
+                <div
+                    *ngFor="let array of fullWeaknesses; index as i"
+                    class="content__wrapper"
+                >
+                    <div class="content__weaknesses">
+                        <h4>
+                            {{ types[i].type.name | capitalizeFirstLetter }}
+                        </h4>
+                        <types
+                            [class]="'type type__' + type.name"
+                            [type]="type"
+                            *ngFor="let type of array"
+                        ></types>
+                    </div>
+                </div>
+            </div>
         </mat-expansion-panel>
     </mat-accordion>
-</div> -->
+</div>
