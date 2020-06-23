@@ -27,6 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TypesComponent } from './types/types.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
         SpinnerComponent,
         TypesComponent,
         MenuBarComponent,
+        SearchComponent,
     ],
     imports: [
         BrowserModule,
