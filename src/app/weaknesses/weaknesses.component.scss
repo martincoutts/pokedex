@@ -1,0 +1,50 @@
+@import '../../scss//index.scss';
+.weaknesses {
+    &__accordion {
+        padding: 2rem;
+    }
+
+    &__panel {
+        padding: 1.25rem;
+        background-color: $primary-blue;
+        border-radius: 6px;
+    }
+
+    &__description,
+    &__title {
+        display: flex;
+        margin: auto auto;
+    }
+
+    &__title {
+        font-size: 1.15rem;
+        color: white;
+    }
+    &__content {
+        display: flex;
+        justify-content: space-evenly;
+        border-top: 1px solid black;
+        margin: 1rem 0 0 0;
+
+        .type {
+            margin: 1rem;
+            text-align: center;
+        }
+    }
+    &__types {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+    }
+}
+
+.content {
+    &__weaknesses {
+        h4 {
+            text-align: center;
+            font-size: 1.15rem;
+            color: white;
+            text-decoration: underline;
+        }
+    }
+}

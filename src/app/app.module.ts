@@ -18,6 +18,7 @@ import { NumberPadPipe } from './pipes/number-pad.pipe';
 import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -55,6 +56,7 @@ import { TypesComponent } from './types/types.component';
         MatProgressSpinnerModule,
         MatExpansionModule,
         MatIconModule,
+        MatDividerModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],
