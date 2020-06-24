@@ -12,9 +12,7 @@ export class MenuBarComponent implements OnInit {
     @Input() disableSort: boolean;
     @Output() menuChange = new EventEmitter<object>();
 
-    ngOnInit() {
-        console.log('menu options', this.menuOptions);
-    }
+    ngOnInit(): void {}
 
     receiveSearch(value: string) {
         this.menuChange.emit({ searchValue: value });
@@ -22,7 +20,6 @@ export class MenuBarComponent implements OnInit {
 
     receivePokemonSearchClear($event) {
         this.menuChange.emit({ clearSearch: true });
-        console.log('clear');
     }
 
     receivesortSelect($event) {

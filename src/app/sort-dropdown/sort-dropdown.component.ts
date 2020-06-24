@@ -14,9 +14,7 @@ export class SortDropdownComponent implements OnInit {
     @Input() disableSort: boolean;
     @Output() sortSelect = new EventEmitter<number>();
 
-    ngOnInit() {
-        console.log('sort options', this.sortOptions);
-    }
+    ngOnInit(): void {}
 
     handleChange($event) {
         this.sortSelect.emit($event.value);

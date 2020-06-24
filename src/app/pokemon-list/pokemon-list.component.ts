@@ -87,7 +87,6 @@ export class PokemonListComponent implements OnInit {
     }
 
     sortList(sortValue: number) {
-        console.log('pokemonList', this.pokemonListFull);
         if (sortValue === 1) {
             this.pokemonListFull.sort(
                 (a, b) => a.entry_number - b.entry_number
@@ -110,12 +109,11 @@ export class PokemonListComponent implements OnInit {
     receiveMenuChange($event) {
         if ($event.clearSearch) {
             this.clearSearch = true;
-            this.filteredPokemonList = this.pokemonListFull;
+            // this.filteredPokemonList = this.pokemonListFull;
             this.sortDisabled = false;
-            console.log('null');
+            this.filterPokemon();
         }
         if ($event.searchValue) {
-            console.log('$event.searchValue', $event.searchValue);
             this.clearSearch = false;
             this.searchValue = $event.searchValue;
             this.sortDisabled = true;
@@ -129,27 +127,26 @@ export class PokemonListComponent implements OnInit {
 
     filterPokemon() {
         const promise = new Promise((resolve, reject) => {
-            if (!this.clearSearch) {
-                if (
-                    this.searchValue.length >= 1 &&
-                    this.searchValue.length < 3
-                ) {
-                    this.hasImages = false;
-                } else {
-                    const filteredList = this.pokemonListFull.filter(
-                        (pokemon) =>
-                            pokemon.pokemon_species.name.includes(
-                                this.searchValue
-                            )
-                    );
-                    resolve(filteredList);
-                }
+            if (this.clearSearch || !this.searchValue.length) {
+                resolve(this.pokemonListFull);
+            }
+            if (this.searchValue.length && this.searchValue.length < 3) {
+                this.hasImages = false;
+            }
+            if (this.clearSearch || this.searchValue.length >= 3) {
+                const filteredList = this.pokemonListFull.filter((pokemon) =>
+                    pokemon.pokemon_species.name.includes(this.searchValue)
+                );
+
+                resolve(filteredList);
             }
         });
 
         promise.then((value: any[]) => {
             this.filteredPokemonList =
-                value.length && this.searchValue !== null ? value : null;
+                this.searchValue !== null || this.searchValue !== ''
+                    ? value
+                    : this.pokemonListFull;
             this.hasImages = true;
         });
     }

@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
     ngOnInit(): void {}
 
     userSearch(input: string) {
-        if (input === '') {
+        if (input === '' || !input.length) {
             this.pokemonSearchClear.emit(true);
         }
         this.pokemonSearch.emit(input);
