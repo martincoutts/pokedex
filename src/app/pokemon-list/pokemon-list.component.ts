@@ -106,6 +106,10 @@ export class PokemonListComponent implements OnInit {
         }
     }
 
+    scrolltToTop() {
+        window.scrollTo(0, 0);
+    }
+
     receiveMenuChange($event) {
         if ($event.clearSearch) {
             this.clearSearch = true;
@@ -123,6 +127,8 @@ export class PokemonListComponent implements OnInit {
         if ($event.sortValue) {
             this.sortList($event.sortValue);
         }
+
+        this.scrolltToTop();
     }
 
     filterPokemon() {

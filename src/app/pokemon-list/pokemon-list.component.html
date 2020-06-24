@@ -16,6 +16,7 @@
 
                     <div class="pokemon-list__name">
                         <h3>
+                            #{{ pokemon.entry_number | numberPad }}
                             {{
                                 pokemon.pokemon_species.name
                                     | capitalizeFirstLetter

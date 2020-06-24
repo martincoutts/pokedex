@@ -1,5 +1,6 @@
 @import '../../scss//index.scss';
 .pokemon-list-container {
+    margin-top: $menu-bar-offset;
     display: flex;
     flex-direction: column;
 
