@@ -1,7 +1,21 @@
 <mat-form-field class="example-form-field">
     <mat-label>Search</mat-label>
-    <input matInput type="text" />
-    <button mat-button matSuffix mat-icon-button aria-label="Clear">
+    <input
+        matInput
+        type="text"
+        [(ngModel)]="value"
+        name="pokemonSearch"
+        #pokemonSearch="ngModel"
+        (ngModelChange)="userSearch(value)"
+    />
+    <button
+        mat-button
+        *ngIf="value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearSearch()"
+    >
         <mat-icon>close</mat-icon>
     </button>
 </mat-form-field>

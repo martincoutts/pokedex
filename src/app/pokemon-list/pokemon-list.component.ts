@@ -14,9 +14,12 @@ export class PokemonListComponent implements OnInit {
         private router: Router,
         private route: ActivatedRoute
     ) {}
-    pokemonList: any[] = [];
+    pokemonListFull: any[] = [];
+    filteredPokemonList: any[];
     slicedPokemonList: any[];
     hasImages = false;
+
+    searchValue: string;
 
     page = 1;
     limit = 151;
@@ -28,29 +31,40 @@ export class PokemonListComponent implements OnInit {
             queryParams: { page: this.page, limit: this.page * 151 },
         });
         // *Checks if item is in localstorage to prevent excessive fetching of images
-        if (localStorage.getItem('pokemonList') !== null) {
-            this.pokemonList = JSON.parse(localStorage.getItem('pokemonList'));
+        if (localStorage.getItem('pokemonListFull') !== null) {
+            this.pokemonListFull = JSON.parse(
+                localStorage.getItem('pokemonListFull')
+            );
+            this.filteredPokemonList = JSON.parse(
+                localStorage.getItem('pokemonListFull')
+            );
 
             this.hasImages = true;
         } else {
             this.service.getAll().subscribe((response: any) => {
-                this.pokemonList = response.pokemon_entries;
+                this.pokemonListFull = response.pokemon_entries;
+                this.filteredPokemonList = response.pokemon_entries;
 
                 this.getPokemonList();
             });
         }
 
+        this.filterPokemon();
+
         this.route.queryParamMap.subscribe((params) => {
             this.limit = parseInt(params.get('limit'), 10);
-            this.maxLimit = this.pokemonList.length;
+            this.maxLimit = this.pokemonListFull.length;
         });
     }
 
     getPokemonList() {
-        this.pokemonList.sort((a, b) => a.entry_number - b.entry_number);
+        this.pokemonListFull.sort((a, b) => a.entry_number - b.entry_number);
 
         this.hasImages = true;
-        localStorage.setItem('pokemonList', JSON.stringify(this.pokemonList));
+        localStorage.setItem(
+            'pokemonList',
+            JSON.stringify(this.pokemonListFull)
+        );
     }
 
     loadMore() {
@@ -60,6 +74,30 @@ export class PokemonListComponent implements OnInit {
         limit >= this.maxLimit ? (this.limitReached = true) : null;
         this.router.navigate(['/'], {
             queryParams: { page: this.page, limit },
+        });
+    }
+
+    receiveMenuChange($event) {
+        this.searchValue = $event.searchValue;
+        this.filterPokemon();
+    }
+
+    filterPokemon() {
+        const promise = new Promise((resolve, reject) => {
+            this.hasImages = false;
+
+            const filteredList = this.pokemonListFull.filter((pokemon) =>
+                pokemon.pokemon_species.name.includes(this.searchValue)
+            );
+            resolve(filteredList);
+        });
+
+        promise.then((value: any[]) => {
+            this.filteredPokemonList =
+                value.length && this.searchValue !== ''
+                    ? value
+                    : this.pokemonListFull;
+            this.hasImages = true;
         });
     }
 }

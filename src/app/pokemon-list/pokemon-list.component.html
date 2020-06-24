@@ -1,6 +1,8 @@
 <div class="pokemon-list-container">
+    <menu-bar (menuChange)="receiveMenuChange($event)"></menu-bar>
+
     <div *ngIf="hasImages; else spinner" class="pokemon-list">
-        <ng-container *ngFor="let pokemon of pokemonList; index as i">
+        <ng-container *ngFor="let pokemon of filteredPokemonList; index as i">
             <div *ngIf="i < limit" class="pokemon-list__pokemon">
                 <a [routerLink]="['pokemon', pokemon.entry_number]">
                     <pokemon-image

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'menu-bar',
@@ -8,5 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class MenuBarComponent implements OnInit {
     constructor() {}
 
+    @Output() menuChange = new EventEmitter<object>();
+
     ngOnInit(): void {}
+
+    receiveSearch(value: string) {
+        this.menuChange.emit({ searchValue: value });
+    }
+
+    receivePokemonSearchClear($event) {
+        this.menuChange.emit({ searchValue: '' });
+    }
 }

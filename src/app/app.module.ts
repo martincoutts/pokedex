@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ScreenComponent } from './screen/screen.component';
@@ -55,7 +56,7 @@ import { SearchComponent } from './search/search.component';
             { path: 'pokemon/:id', component: PokemonComponent },
         ]),
         MatButtonModule,
-
+        FormsModule,
         BrowserAnimationsModule,
 
         MatProgressSpinnerModule,
