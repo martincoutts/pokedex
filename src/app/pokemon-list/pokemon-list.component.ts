@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { PokemonService } from './../services/pokemon.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
     // tslint:disable-next-line: component-selector
@@ -20,19 +20,28 @@ export class PokemonListComponent implements OnInit {
     hasImages = false;
 
     searchValue: string = null;
-    clearSearch: boolean = false;
+    clearSearch = false;
     sortOptions: any[] = [
         { text: 'Ascending 1 - 10', value: 1 },
         { text: 'Descending 10 - 1', value: 2 },
         { text: 'Ascending A - Z', value: 3 },
         { text: 'Ascending Z - A', value: 4 },
     ];
-    sortDisabled: boolean = false;
+    sortDisabled = false;
+    showScrollButton = false;
 
     page = 1;
     limit = 151;
     maxLimit: number;
     limitReached = false;
+
+    @HostListener('window:scroll', ['$event']) onScrollEvent($event) {
+        if ($event.srcElement.documentElement.scrollTop > 7000) {
+            this.showScrollButton = true;
+        } else {
+            this.showScrollButton = false;
+        }
+    }
 
     ngOnInit() {
         this.router.navigate(['/'], {

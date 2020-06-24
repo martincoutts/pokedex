@@ -40,6 +40,17 @@
     </div>
 </div>
 
+<button
+    mat-fab
+    color="primary"
+    aria-label="Click to go to top of page"
+    class="scroll-to-top-button"
+    [class.scroll-to-top-button--active]="showScrollButton"
+    (click)="scrolltToTop()"
+>
+    <mat-icon>arrow_upward</mat-icon>
+</button>
+
 <ng-template #spinner>
     <spinner [className]="'spinner--full-screen'"></spinner>
 </ng-template>

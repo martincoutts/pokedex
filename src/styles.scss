@@ -37,6 +37,9 @@ body {
     background-color: $pokedex-red;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 html,
 body {
     height: 100%;
@@ -66,6 +69,10 @@ body {
     @include avatarSize(150px, 150px);
 }
 
-.mat-flat-button.mat-primary {
+.mat-flat-button.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
     background-color: $primary-blue;
 }
