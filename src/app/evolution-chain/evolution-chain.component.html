@@ -26,6 +26,8 @@
         *ngFor="let cell of sortedCellData; index as i"
         [class]="'evolution-chain__icon arrow--' + i"
     >
-        <mat-icon class="arrow-icon" *ngIf="i < 2">arrow_right_alt</mat-icon>
+        <mat-icon class="arrow-icon" *ngIf="sortedCellData[i + 1]"
+            >arrow_right_alt</mat-icon
+        >
     </div>
 </div>

@@ -3,4 +3,9 @@
         (pokemonSearch)="receiveSearch($event)"
         (pokemonSearchClear)="receivePokemonSearchClear($event)"
     ></search>
+    <sort-dropdown
+        [sortOptions]="menuOptions"
+        (sortSelect)="receivesortSelect($event)"
+        [disableSort]="disableSort"
+    ></sort-dropdown>
 </div>

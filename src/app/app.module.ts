@@ -21,6 +21,7 @@ import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -29,6 +30,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { TypesComponent } from './types/types.component';
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { SearchComponent } from './search/search.component';
+import { SortDropdownComponent } from './sort-dropdown/sort-dropdown.component';
 
 @NgModule({
     declarations: [
@@ -45,6 +47,7 @@ import { SearchComponent } from './search/search.component';
         TypesComponent,
         MenuBarComponent,
         SearchComponent,
+        SortDropdownComponent,
     ],
     imports: [
         BrowserModule,
@@ -64,6 +67,7 @@ import { SearchComponent } from './search/search.component';
         MatIconModule,
         MatDividerModule,
         MatInputModule,
+        MatSelectModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],

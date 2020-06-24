@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
     selector: 'menu-bar',
@@ -8,15 +8,24 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class MenuBarComponent implements OnInit {
     constructor() {}
 
+    @Input() menuOptions: any[];
+    @Input() disableSort: boolean;
     @Output() menuChange = new EventEmitter<object>();
 
-    ngOnInit(): void {}
+    ngOnInit() {
+        console.log('menu options', this.menuOptions);
+    }
 
     receiveSearch(value: string) {
         this.menuChange.emit({ searchValue: value });
     }
 
     receivePokemonSearchClear($event) {
-        this.menuChange.emit({ searchValue: '' });
+        this.menuChange.emit({ clearSearch: true });
+        console.log('clear');
+    }
+
+    receivesortSelect($event) {
+        this.menuChange.emit({ sortValue: $event });
     }
 }

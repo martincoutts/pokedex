@@ -1,6 +1,10 @@
-<div class="pokemon-list-container">
-    <menu-bar (menuChange)="receiveMenuChange($event)"></menu-bar>
+<menu-bar
+    (menuChange)="receiveMenuChange($event)"
+    [menuOptions]="sortOptions"
+    [disableSort]="sortDisabled"
+></menu-bar>
 
+<div class="pokemon-list-container">
     <div *ngIf="hasImages; else spinner" class="pokemon-list">
         <ng-container *ngFor="let pokemon of filteredPokemonList; index as i">
             <div *ngIf="i < limit" class="pokemon-list__pokemon">
