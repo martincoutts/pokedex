@@ -84,12 +84,15 @@ export class PokemonListComponent implements OnInit {
 
     filterPokemon() {
         const promise = new Promise((resolve, reject) => {
-            this.hasImages = false;
-
-            const filteredList = this.pokemonListFull.filter((pokemon) =>
-                pokemon.pokemon_species.name.includes(this.searchValue)
-            );
-            resolve(filteredList);
+            if (this.searchValue.length && this.searchValue.length <= 2) {
+                this.hasImages = false;
+                console.log('less than 3', this.searchValue);
+            } else {
+                const filteredList = this.pokemonListFull.filter((pokemon) =>
+                    pokemon.pokemon_species.name.includes(this.searchValue)
+                );
+                resolve(filteredList);
+            }
         });
 
         promise.then((value: any[]) => {
