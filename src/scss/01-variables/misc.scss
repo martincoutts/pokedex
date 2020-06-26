@@ -1,2 +1,4 @@
 $menu-bar-height: 65px;
+$menu-bar-height-mobile: 130px;
 $menu-bar-offset: calc(2rem + #{$menu-bar-height});
+$menu-bar-offset-mobile: calc(2rem + #{$menu-bar-height-mobile});

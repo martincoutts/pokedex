@@ -1,12 +1,19 @@
 @import '../../scss//index.scss';
 .pokemon-list-container {
-    margin-top: $menu-bar-offset;
+    margin-top: $menu-bar-offset-mobile;
+    @include lg {
+        margin-top: $menu-bar-offset;
+    }
+
     display: flex;
     flex-direction: column;
 
     .pokemon-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+        @include lg {
+            grid-template-columns: repeat(3, 1fr);
+        }
 
         justify-items: center;
 
