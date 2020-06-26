@@ -60,7 +60,10 @@ body {
 }
 
 .info__avatar {
-    @include avatarSize(350px, 350px);
+    @include avatarSize(250px, 250px);
+    @include lg {
+        @include avatarSize(350px, 350px);
+    }
 }
 
 .evolution-chain__avatar {

@@ -1,15 +1,22 @@
 @import '../../scss//index.scss';
 .pokemon {
     display: grid;
+    grid-template-columns: 1fr;
 
     &__header {
         grid-row: 1 / span 1;
 
         padding: 2rem;
+        display: grid;
+        grid-template-columns: 3fr;
+        grid-template-rows: 1fr 1fr;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
+        @include lg {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
         h1 {
             margin: 0 auto;
         }
@@ -17,9 +24,8 @@
     }
 
     &__info {
-        display: grid;
-        grid-template-columns: 1fr;
         @include lg {
+            display: grid;
             grid-row: 2 / span 1;
 
             grid-template-columns: minmax(200px, auto) 1fr;
@@ -33,24 +39,26 @@
             &__image {
                 grid-column: 1 / span 1;
                 grid-row: 1 / span 1;
+                margin: 0.75rem;
+                justify-self: center;
                 @include lg {
                     grid-row: 1 / span 2;
+                    margin: 1rem;
                 }
-
-                margin: 1rem;
             }
 
             &__flavour-text {
                 grid-column: 1 / span 1;
                 grid-row: 2 / span 1;
-                display: inline;
+                padding: 1rem;
+                text-align: center;
+
                 @include lg {
                     grid-column: 2 / span 1;
                     grid-row: 1 / span 1;
+                    font-size: 1.5rem;
+                    padding: 0.25rem;
                 }
-
-                font-size: 1.5rem;
-                padding: 0.25rem;
             }
             &__stats {
                 @include lg {
@@ -64,10 +72,8 @@
                 font-size: 1.15rem;
                 border-radius: 6px;
 
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, 1fr);
                 @include lg {
+                    display: grid;
                     grid-template-columns: repeat(4, 1fr);
                     grid-template-rows: repeat(2, 1fr);
                 }
