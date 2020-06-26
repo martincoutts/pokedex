@@ -5,15 +5,16 @@
             mat-flat-button
             color="primary"
             (click)="navigateToPokemon(pokemon.id - 1)"
+            class="header__navigate-button header__navigate-button--back"
         >
             < #{{ pokemon.id - 1 | numberPad }}
             {{
-                pokemonList[pokemon.id - 1].pokemon_species.name
+                pokemonList[pokemon.id - 2].pokemon_species.name
                     | capitalizeFirstLetter
             }}
         </button>
 
-        <h1>
+        <h1 class="header__text">
             #{{ pokemon.id | numberPad }}
             {{ pokemon.name | capitalizeFirstLetter }}
         </h1>
@@ -23,6 +24,7 @@
             mat-flat-button
             color="primary"
             (click)="navigateToPokemon(pokemon.id + 1)"
+            class="header__navigate-button header__navigate-button--forward"
         >
             #{{ pokemon.id + 1 | numberPad }}
             {{
@@ -44,7 +46,7 @@
             {{ pokemonSpecies.flavor_text_entries[3].flavor_text }}
         </p>
 
-        <!-- <div class="info__stats">
+        <div class="info__stats">
             <div class="stat" *ngFor="let stat of pokemon.stats">
                 <h4>{{ stat.stat.name | capitalizeFirstLetter }}</h4>
                 <span>{{ stat.base_stat }}</span>
@@ -57,27 +59,27 @@
                 <h4>Weight</h4>
                 <span>{{ pokemon.weight / 10 }}kg</span>
             </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="info__types">
+        <div class="info__types">
             <types
                 [class]="'type type__' + type.type.name"
                 [type]="type.type"
                 *ngFor="let type of pokemon.types"
             >
             </types>
-        </div> -->
+        </div>
 
-        <!-- <weaknesses [types]="pokemon.types"></weaknesses> -->
+        <weaknesses [types]="pokemon.types"></weaknesses>
     </div>
 
-    <!-- <div class="pokemon__evolution-chain">
+    <div class="pokemon__evolution-chain">
         <evolution-chain
             *ngIf="evolutionChainResponse"
             [evolutionChain]="evolutionChainResponse"
             (clickedOnEvolution)="receiveClickedOnEvolution($event)"
         ></evolution-chain>
-    </div> -->
+    </div>
 
     <button
         [disabled]="loadingRoute"

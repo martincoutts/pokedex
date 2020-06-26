@@ -11,7 +11,10 @@
     .pokemon-list {
         display: grid;
         grid-template-columns: 1fr;
-        @include lg {
+        @include md {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include md-landscape {
             grid-template-columns: repeat(3, 1fr);
         }
 
