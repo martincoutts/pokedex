@@ -1,0 +1,56 @@
+<menu-bar
+    (menuChange)="receiveMenuChange($event)"
+    [menuOptions]="sortOptions"
+    [disableSort]="sortDisabled"
+></menu-bar>
+
+<div class="pokemon-list-container">
+    <div *ngIf="hasImages; else spinner" class="pokemon-list">
+        <ng-container *ngFor="let pokemon of filteredPokemonList; index as i">
+            <div *ngIf="i < limit" class="pokemon-list__pokemon">
+                <a [routerLink]="['pokemon', pokemon.entry_number]">
+                    <pokemon-image
+                        className="pokemon-list__avatar"
+                        [pokemon]="pokemon"
+                    ></pokemon-image>
+
+                    <div class="pokemon-list__name">
+                        <h3>
+                            #{{ pokemon.entry_number | numberPad }}
+                            {{
+                                pokemon.pokemon_species.name
+                                    | capitalizeFirstLetter
+                            }}
+                        </h3>
+                    </div>
+                </a>
+            </div>
+        </ng-container>
+    </div>
+    <div *ngIf="hasImages" class="pokemon-list-container__load-more-button">
+        <button
+            [disabled]="limitReached"
+            class="pokemon-list-container__load-more-button--button"
+            mat-flat-button
+            color="primary"
+            (click)="loadMore()"
+        >
+            Load More
+        </button>
+    </div>
+</div>
+
+<button
+    mat-fab
+    color="primary"
+    aria-label="Click to go to top of page"
+    class="scroll-to-top-button"
+    [class.scroll-to-top-button--active]="showScrollButton"
+    (click)="scrolltToTop()"
+>
+    <mat-icon>arrow_upward</mat-icon>
+</button>
+
+<ng-template #spinner>
+    <spinner [className]="'spinner--full-screen'"></spinner>
+</ng-template>
