@@ -1,11 +1,13 @@
 @import '../../scss//index.scss';
 .weaknesses {
     &__accordion {
-        padding: 2rem;
+        @include lg {
+            padding: 2rem;
+        }
     }
 
     &__panel {
-        padding: 1.25rem;
+        padding: 1.25rem 0;
         background-color: $primary-blue;
         border-radius: 6px;
     }
@@ -14,6 +16,13 @@
     &__title {
         display: flex;
         margin: auto auto;
+    }
+
+    &__description {
+        display: none;
+        @include md {
+            display: flex;
+        }
     }
 
     &__title {
@@ -32,9 +41,12 @@
         }
     }
     &__types {
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-rows: auto;
+        margin: auto;
+        @include lg {
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto;
+        }
     }
 }
 

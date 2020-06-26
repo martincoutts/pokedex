@@ -1,8 +1,13 @@
 @import '../../scss//index.scss';
 .evolution-chain {
     display: grid;
-    grid-template-columns: 1fr auto 1fr auto 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 1fr 1fr;
+    @include lg {
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        grid-template-rows: auto 1fr;
+    }
+
     justify-items: center;
 
     a:hover {
@@ -11,8 +16,13 @@
 
     h2 {
         color: white;
-        grid-column: 1 / span 5;
+        grid-column: 1 / span 1;
         grid-row: 1 / span 1;
+        @include lg {
+            grid-column: 1 / span 5;
+            grid-row: 1 / span 1;
+        }
+
         justify-self: center;
     }
 
@@ -25,19 +35,32 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+
         padding: 1.5rem;
 
         &--0 {
             grid-column: 1 / span 1;
             grid-row: 2 / span 1;
+            @include lg {
+                grid-column: 1 / span 1;
+                grid-row: 2 / span 1;
+            }
         }
         &--1 {
-            grid-column: 3 / span 1;
-            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
+            grid-row: 3 / span 1;
+            @include lg {
+                grid-column: 3 / span 1;
+                grid-row: 2 / span 1;
+            }
         }
         &--2 {
-            grid-column: 5 / span 1;
-            grid-row: 2 / span 1;
+            grid-column: 1 / span 1;
+            grid-row: 4 / span 1;
+            @include lg {
+                grid-column: 5 / span 1;
+                grid-row: 2 / span 1;
+            }
         }
     }
 
@@ -48,20 +71,28 @@
     &__icon {
         display: flex;
         .arrow-icon {
-            align-self: center;
-            color: $pokedex-yellow;
-            font-size: 80px;
+            display: none;
+            @include lg {
+                display: block;
+                align-self: center;
+                color: $pokedex-yellow;
+                font-size: 80px;
+            }
         }
     }
 
     .arrow {
         &--0 {
-            grid-column: 2 / span 1;
-            grid-row: 2 / span 1;
+            @include lg {
+                grid-column: 2 / span 1;
+                grid-row: 2 / span 1;
+            }
         }
         &--1 {
-            grid-column: 4 / span 1;
-            grid-row: 2 / span 1;
+            @include lg {
+                grid-column: 4 / span 1;
+                grid-row: 2 / span 1;
+            }
         }
     }
 }

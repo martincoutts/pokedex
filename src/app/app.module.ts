@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ScreenComponent } from './screen/screen.component';
@@ -19,12 +20,17 @@ import { PokemonImageComponent } from './pokemon-image/pokemon-image.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TypesComponent } from './types/types.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { SearchComponent } from './search/search.component';
+import { SortDropdownComponent } from './sort-dropdown/sort-dropdown.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +45,9 @@ import { TypesComponent } from './types/types.component';
         PokemonImageComponent,
         SpinnerComponent,
         TypesComponent,
+        MenuBarComponent,
+        SearchComponent,
+        SortDropdownComponent,
     ],
     imports: [
         BrowserModule,
@@ -50,13 +59,15 @@ import { TypesComponent } from './types/types.component';
             { path: 'pokemon/:id', component: PokemonComponent },
         ]),
         MatButtonModule,
-
+        FormsModule,
         BrowserAnimationsModule,
 
         MatProgressSpinnerModule,
         MatExpansionModule,
         MatIconModule,
         MatDividerModule,
+        MatInputModule,
+        MatSelectModule,
     ],
     providers: [PokemonService],
     bootstrap: [AppComponent],

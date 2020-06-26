@@ -1,0 +1,15 @@
+@import '../../scss//index.scss';
+.menu-bar {
+    width: 100%;
+    max-height: $menu-bar-height-mobile;
+    position: fixed;
+    background-color: $pokedex-yellow;
+    padding: 1rem 3rem;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    @include lg {
+        flex-direction: row;
+        max-height: $menu-bar-height;
+    }
+}

@@ -1,0 +1,13 @@
+<mat-form-field>
+    <mat-label>Sort</mat-label>
+    <mat-select
+        class="form-control"
+        #t
+        (selectionChange)="handleChange($event)"
+        [disabled]="disableSort"
+    >
+        <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+            {{ option.text }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

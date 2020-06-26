@@ -37,9 +37,13 @@ body {
     background-color: $pokedex-red;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 html,
 body {
     height: 100%;
+    width: 100%;
 }
 body {
     margin: 0;
@@ -56,7 +60,10 @@ body {
 }
 
 .info__avatar {
-    @include avatarSize(350px, 350px);
+    @include avatarSize(250px, 250px);
+    @include lg {
+        @include avatarSize(350px, 350px);
+    }
 }
 
 .evolution-chain__avatar {
@@ -66,6 +73,14 @@ body {
     @include avatarSize(150px, 150px);
 }
 
-.mat-flat-button.mat-primary {
+.mat-flat-button.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
     background-color: $primary-blue;
+}
+
+.mat-expansion-panel-body {
+    padding: 0;
 }

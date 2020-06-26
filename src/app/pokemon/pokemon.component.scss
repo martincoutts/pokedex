@@ -1,47 +1,90 @@
 @import '../../scss//index.scss';
 .pokemon {
     display: grid;
+    grid-template-columns: 1fr;
 
     &__header {
         grid-row: 1 / span 1;
-        padding: 2rem;
 
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-rows: 1fr 1fr;
+
+        @include md {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
         h1 {
             margin: 0 auto;
         }
         background-color: $pokedex-yellow;
+
+        .header {
+            @include sm {
+                &__text {
+                    grid-column: 1 / span 3;
+                    grid-row: 1 / span 1;
+                }
+                &__navigate-button {
+                    padding: 0 0.25rem;
+                    &--back {
+                        grid-column: 1 / span 1;
+                        grid-row: 2 / span 1;
+                    }
+                    &--forward {
+                        grid-column: 3 / span 1;
+                        grid-row: 2 / span 1;
+                    }
+                }
+            }
+        }
     }
 
     &__info {
-        grid-row: 2 / span 1;
-        display: grid;
-        grid-template-columns: minmax(200px, auto) 1fr;
-        grid-template-rows: auto;
-        padding: 1rem;
+        @include lg {
+            display: grid;
+            grid-row: 2 / span 1;
+
+            grid-template-columns: minmax(200px, auto) 1fr;
+            grid-template-rows: auto;
+            padding: 1rem;
+        }
 
         background-color: $info-section-background-color;
 
         .info {
             &__image {
                 grid-column: 1 / span 1;
-                grid-row: 1 / span 2;
-
-                margin: 1rem;
+                grid-row: 1 / span 1;
+                margin: 0.75rem;
+                justify-self: center;
+                @include lg {
+                    grid-row: 1 / span 2;
+                    margin: 1rem;
+                }
             }
 
             &__flavour-text {
-                grid-column: 2 / span 1;
-                grid-row: 1 / span 1;
+                grid-column: 1 / span 1;
+                grid-row: 2 / span 1;
+                padding: 1rem;
+                text-align: center;
 
-                font-size: 1.5rem;
-                padding: 0.25rem;
+                @include lg {
+                    grid-column: 2 / span 1;
+                    grid-row: 1 / span 1;
+                    font-size: 1.5rem;
+                    padding: 0.25rem;
+                }
             }
             &__stats {
-                grid-column: 2 / span 1;
-                grid-row: 2 / span 1;
+                @include lg {
+                    grid-column: 2 / span 1;
+                    grid-row: 2 / span 1;
+                }
 
                 background-color: $primary-blue;
                 padding: 1rem;
@@ -50,8 +93,13 @@
                 border-radius: 6px;
 
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto;
+
+                @include md-landscape {
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(2, 1fr);
+                }
 
                 .stat {
                     margin: 0 1rem;
@@ -59,22 +107,38 @@
                     h4 {
                         color: $info-section-background-color;
                     }
+                    text-align: center;
+                    @include md-landscape {
+                        text-align: left;
+                    }
                 }
             }
             &__types {
-                grid-column: 1 / span 1;
-                grid-row: 3 / span 1;
+                @include lg {
+                    grid-column: 1 / span 1;
+                    grid-row: 3 / span 1;
+                }
 
                 display: flex;
                 margin: 1rem;
+                justify-content: center;
+
+                @include lg {
+                    justify-content: left;
+                }
             }
         }
     }
     &__evolution-chain {
-        grid-row: 3 / span 1;
+        @include lg {
+            grid-row: 3 / span 1;
+        }
     }
     &__back-button {
-        grid-row: 4 / span 1;
+        @include lg {
+            grid-row: 4 / span 1;
+        }
+
         display: flex;
 
         align-content: center;
