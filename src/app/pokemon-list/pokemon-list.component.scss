@@ -17,6 +17,9 @@
         @include md-landscape {
             grid-template-columns: repeat(3, 1fr);
         }
+        @include xl {
+            grid-template-columns: repeat(7, 1fr);
+        }
 
         justify-items: center;
 

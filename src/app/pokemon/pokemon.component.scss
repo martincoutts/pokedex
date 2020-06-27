@@ -2,6 +2,7 @@
 .pokemon {
     display: grid;
     grid-template-columns: 1fr;
+    height: 100vh;
 
     &__header {
         grid-row: 1 / span 1;
@@ -119,9 +120,17 @@
                     grid-row: 3 / span 1;
                 }
 
-                display: flex;
-                margin: 1rem;
-                justify-content: center;
+                .types {
+                    &__title {
+                        text-align: center;
+                        font-size: 1.15rem;
+                    }
+                    &__types {
+                        display: flex;
+                        margin: 1rem;
+                        justify-content: center;
+                    }
+                }
 
                 @include lg {
                     justify-content: left;
@@ -140,10 +149,12 @@
         }
 
         display: flex;
+        align-self: end;
 
         align-content: center;
         justify-content: center;
         padding: 0.5rem;
+        max-height: 50px;
     }
 
     .back-button__spinner {
