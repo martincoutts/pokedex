@@ -47,6 +47,7 @@
     class="scroll-to-top-button"
     [class.scroll-to-top-button--active]="showScrollButton"
     (click)="scrolltToTop()"
+    *ngIf="hasImages"
 >
     <mat-icon>arrow_upward</mat-icon>
 </button>

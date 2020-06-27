@@ -62,12 +62,15 @@
         </div>
 
         <div class="info__types">
-            <types
-                [class]="'type type__' + type.type.name"
-                [type]="type.type"
-                *ngFor="let type of pokemon.types"
-            >
-            </types>
+            <div class="types__title"><h4>Types</h4></div>
+            <div class="types__types">
+                <types
+                    [class]="'type type__' + type.type.name"
+                    [type]="type.type"
+                    *ngFor="let type of pokemon.types"
+                >
+                </types>
+            </div>
         </div>
 
         <weaknesses [types]="pokemon.types"></weaknesses>
